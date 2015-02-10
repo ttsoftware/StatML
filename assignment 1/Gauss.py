@@ -6,19 +6,7 @@ import pdb
 from mpl_toolkits.mplot3d import Axes3D
 
 
-class Gauss:
-
-    @staticmethod
-    def draw_gauss_one(mean, deviation):
-        N = lambda x: (1 / (2 * np.pi * deviation ** 2) ** 0.5) * np.exp((-1 / (2 * deviation ** 2)) * (x - mean) ** 2)
-
-        xs = np.arange(-10., 10., 0.1)
-        ys = map(lambda x: N(x), xs)
-
-        plt.figure('Guassian distribution')
-        plt.plot(xs, ys)
-        plt.axis([-5, 5, -5, 5])
-        plt.show()
+class Gauss(object):
 
     @staticmethod
     def sample_gauss(mean, covariance, size):
@@ -27,6 +15,19 @@ class Gauss:
             z = np.random.randn(2, 1)
             sample += [mean + np.dot(np.linalg.cholesky(covariance), z)]
         return sample
+
+    @staticmethod
+    def draw_gauss_one(mean, deviation):
+        N = lambda x: (1 / (2 * np.pi * deviation ** 2) ** 0.5) * np.exp((-1 / (2 * deviation ** 2)) * (x - mean) ** 2)
+
+        xs = np.arange(-10., 10., 0.1)
+        ys = map(lambda x: N(x), xs)
+
+        fig = plt.figure('Guassian distribution')
+        plt.plot(xs, ys)
+        plt.axis([-5, 5, -5, 5])
+
+        return fig
 
     @staticmethod
     def draw_gauss_multi(mean, covariance, likelihood_mean_function=None):
@@ -60,7 +61,8 @@ class Gauss:
         likelyhood_mean = lambda N: 1/len(N) * sum(N)
         fig = Gauss.draw_gauss_multi(mean, covariance, likelyhood_mean)
         plt.legend(loc='upper left')
-        plt.show()
+
+        return fig
 
     @staticmethod
     def draw_eigenvectors(distribution_mean, distribution_covariance):
@@ -100,4 +102,5 @@ class Gauss:
         )
 
         plt.legend(loc='upper left')
-        plt.show()
+
+        return fig
