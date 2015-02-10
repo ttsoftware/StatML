@@ -17,8 +17,8 @@ accuracy_3 = []
 for i, data in enumerate(testset):
     label = classifier.nearest_neighbour(3, data['params'])
     accuracy_3 += [label == data['label']]
- 
-accuracy_5 = []
+
+accuracy_5 = [] 
 for i, data in enumerate(testset):
     label = classifier.nearest_neighbour(5, data['params'])
     accuracy_5 += [label == data['label']]
