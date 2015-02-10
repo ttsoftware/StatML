@@ -22,7 +22,7 @@ accuracy_5 = []
 for i, data in enumerate(testset):
     label = classifier.nearest_neighbour(5, data['params'])
     accuracy_5 += [label == data['label']]
- 
+
 print accuracy_1.count(True) / len(accuracy_1)
 print accuracy_3.count(True) / len(accuracy_3)
 print accuracy_5.count(True) / len(accuracy_5)
