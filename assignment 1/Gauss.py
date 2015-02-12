@@ -75,14 +75,16 @@ class Gauss(object):
         likehood_covariance = lambda N: (
             1/len(N) *
             sum(map(
-                lambda x: ((x - sample_mean)*(x - sample_mean).T),
+                lambda x: np.dot((x - sample_mean), (x - sample_mean).T),
                 N
             ))
         )
 
         sample_covariance = likehood_covariance(sample)
 
-        eigenvalues, eigenvectors = np.linalg.eigh(sample_covariance)
+        print sample_covariance
+
+        eigenvalues, eigenvectors = np.linalg.eig(sample_covariance)
 
         scale_eigenvector = lambda eigenvalue, eigenvector: \
             distribution_mean + np.sqrt(eigenvalue)*np.linalg.norm(eigenvector)

@@ -8,7 +8,12 @@ class Classifier(object):
         self.dataset = dataset
 
     def nearest_neighbour(self, k, coordinate):
+        """
 
+        :param k:
+        :param coordinate:
+        :return:
+        """
         neighbours = []
 
         # we expect dataset to be sorted, and we expect the first parameter to be the x-axis value.
