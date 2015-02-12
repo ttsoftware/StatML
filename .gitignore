@@ -1,3 +1,8 @@
 */.idea
 */.idea/
 */.idea/*
+.idea/
+.idea/*
+assignment\ 1/__pycache__/
+assignment\ 1/*.pyc
+*/*.pyc

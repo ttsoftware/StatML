@@ -75,14 +75,13 @@ class Gauss(object):
         likehood_covariance = lambda N: (
             1/len(N) *
             sum(map(
-                lambda x: np.dot((x - sample_mean), (x - sample_mean).T),
+                lambda x: ((x - sample_mean) * (x - sample_mean).T),
                 N
             ))
         )
 
         sample_covariance = likehood_covariance(sample)
 
-        print sample_covariance
 
         eigenvalues, eigenvectors = np.linalg.eig(sample_covariance)
 
@@ -91,7 +90,10 @@ class Gauss(object):
 
         translated_eigenvector1 = scale_eigenvector(eigenvalues[0], eigenvectors[0])
         translated_eigenvector2 = scale_eigenvector(eigenvalues[1], eigenvectors[1])
-
+        print translated_eigenvector1
+        print np.sqrt(eigenvalues[0]), eigenvalues[0]
+        print translated_eigenvector1
+        print np.sqrt(eigenvalues[1]), eigenvalues[1    ]
         fig = Gauss.draw_gauss_multi(distribution_mean, distribution_covariance, likelyhood_mean)
 
         plt.plot(
