@@ -30,22 +30,23 @@ class Gauss(object):
         return fig
 
     @staticmethod
-    def draw_gauss_multi(mean, covariance, likelihood_mean_function=None):
+    def draw_gauss_multi(mean, covariance, likelihood_mean_function=None, sample=None):
 
-        sample = Gauss.sample_gauss(mean, covariance, 100)
+        if sample is None:
+            sample = Gauss.sample_gauss(mean, covariance, 100)
 
         xs = map(lambda x: x.item(0), sample)
         ys = map(lambda x: x.item(1), sample)
 
         fig = plt.figure('Guassian distribution')
         plt.plot(xs, ys, 'ro')
-        plt.plot(mean.item(0), mean.item(1), 'b^', label='Distribution mean')
+        plt.plot(mean.item(0), mean.item(1), 'b^', label='Distribution mean: ' + str((mean.item(0), mean.item(1))))
 
         if likelihood_mean_function is not None:
             sample_mean = likelihood_mean_function(sample)
 
             # plot maximum likelihood sample mean, and the deviation from distrubition mean
-            plt.plot(sample_mean.item(0), sample_mean.item(1), 'bo', label='Sample mean')
+            plt.plot(sample_mean.item(0), sample_mean.item(1), 'bo', label='Sample mean: ' + str((sample_mean.item(0), sample_mean.item(1))))
             plt.plot(
                 [mean.item(0), sample_mean.item(0)],
                 [mean.item(1), sample_mean.item(1)],
@@ -70,41 +71,73 @@ class Gauss(object):
         sample = Gauss.sample_gauss(distribution_mean, distribution_covariance, 100)
 
         likelyhood_mean = lambda N: 1/len(N) * sum(N)
+        # maximum likelihood sample mean
         sample_mean = likelyhood_mean(sample)
 
         likehood_covariance = lambda N: (
             1/len(N) *
             sum(map(
-                lambda x: ((x - sample_mean) * (x - sample_mean).T),
+                lambda x: np.dot((x - sample_mean), (x - sample_mean).T),  # should this be dot or product?
                 N
             ))
         )
 
+        # maximum likelihood sample covariance
         sample_covariance = likehood_covariance(sample)
 
-
+        # eigenvalues are found by normalising the covariance
         eigenvalues, eigenvectors = np.linalg.eig(sample_covariance)
 
         scale_eigenvector = lambda eigenvalue, eigenvector: \
-            distribution_mean + np.sqrt(eigenvalue)*np.linalg.norm(eigenvector)
+            distribution_mean + np.sqrt(eigenvalue)*eigenvector
 
-        translated_eigenvector1 = scale_eigenvector(eigenvalues[0], eigenvectors[0])
-        translated_eigenvector2 = scale_eigenvector(eigenvalues[1], eigenvectors[1])
-        print translated_eigenvector1
-        print np.sqrt(eigenvalues[0]), eigenvalues[0]
-        print translated_eigenvector1
-        print np.sqrt(eigenvalues[1]), eigenvalues[1    ]
-        fig = Gauss.draw_gauss_multi(distribution_mean, distribution_covariance, likelyhood_mean)
+        translated_eigenvector1 = scale_eigenvector(eigenvalues[0], eigenvectors[:, 0:1])
+        translated_eigenvector2 = scale_eigenvector(eigenvalues[1], eigenvectors[:, 1:2])
+
+        fig = Gauss.draw_gauss_multi(distribution_mean, distribution_covariance, likelyhood_mean, sample)
 
         plt.plot(
             translated_eigenvector1[0],
-            translated_eigenvector1[1], 'bx', label='translated eigenvector 1'
+            translated_eigenvector1[1], 'bx'
         )
         plt.plot(
             translated_eigenvector2[0],
-            translated_eigenvector2[1], 'bx', label='translated eigenvector 2'
+            translated_eigenvector2[1], 'bx'
         )
+
+        # plot line from mean to eigenvectors
+        plt.plot(
+                [sample_mean.item(0), translated_eigenvector1.item(0)],
+                [sample_mean.item(1), translated_eigenvector1.item(1)],
+                '-',
+                color=np.random.random(3),
+                label='Translated eigenvector 1: ' + str(np.linalg.norm(sample_mean - translated_eigenvector1))
+            )
+
+        # plot line from mean to eigenvectors
+        plt.plot(
+                [sample_mean.item(0), translated_eigenvector2.item(0)],
+                [sample_mean.item(1), translated_eigenvector2.item(1)],
+                '-',
+                color=np.random.random(3),
+                label='Translated eigenvector 2: ' + str(np.linalg.norm(sample_mean - translated_eigenvector2))
+            )
+
+        # ensure that eigenvectors are orthogonal
+        assert eigenvectors[:, 0:1][0] * eigenvectors[:, 0:1][1] \
+              + eigenvectors[:, 1:2][0] * eigenvectors[:, 1:2][1] == 0
+
+        rotate_covariance_30 = Gauss.rotate_covariance(30, sample_covariance)
+        rotate_covariance_60 = Gauss.rotate_covariance(60, sample_covariance)
+        rotate_covariance_90 = Gauss.rotate_covariance(90, sample_covariance)
+
+        # TODO do the rest of the assignment
 
         plt.legend(loc='upper left')
 
         return fig
+
+    @staticmethod
+    def rotate_covariance(phi, covariance):
+        R = np.array([[np.cos(phi), -np.sin(phi)], [np.sin(phi), np.cos(phi)]])
+        return np.dot(np.dot(np.linalg.inv(R), covariance), R)
