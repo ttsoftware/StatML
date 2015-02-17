@@ -48,7 +48,7 @@ print "Accuracy k=5: " + accuracy_5
 
 classifier = Classifier(trainingset)
 best_k = classifier.cross_validator(5)
-accuracy_raw = classifier.find_accuracy(testset, best_k)
+raw_accuracy = classifier.find_accuracy(testset, best_k)
 
 normalizer = Normalizer(trainingset)
 normalized_trainingset = normalizer.normalize_means()
@@ -73,5 +73,4 @@ plt.show()
 classifier = Classifier(normalized_trainingset)
 best_k = classifier.cross_validator(5)
 accuracy_normalized = classifier.find_accuracy(normalized_testset, best_k)
-
-print accuracy_raw, accuracy_normalized
+print raw_accuracy, accuracy_normalized
