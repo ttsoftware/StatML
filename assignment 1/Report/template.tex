@@ -1,6 +1,5 @@
 \documentclass[12pt, a4paper]{article}
 \usepackage{array}
-\usepackage{tabu}
 \usepackage{longtable}
 \usepackage[table]{xcolor}
 \usepackage{hyperref}
@@ -11,13 +10,11 @@
 \usepackage[margin=1 in]{geometry}
 \usepackage{color}
 \usepackage{caption}
-\usepackage{subfigure}
-\usepackage{fancyhdr}
 \usepackage{pdflscape}
-
+\usepackage{fancyhdr}
 
 \title{Assignment 1: Foundations\\Statistical Methods for Machine Learning}
-\author{Troels Thomsen - qvw203\\Rasmus Haarslev - nkh877\\Allan Martin Nielsen - }
+\author{Troels Thomsen - qvw203\\Rasmus Haarslev - nkh877\\Allan Martin Nielsen - jcl187}
 
 \setlength\parindent{0pt}		% noindent through whole document
 \usepackage[parfill]{parskip}	% extra linebreak on new paragraph
@@ -28,13 +25,47 @@
 \newpage
 
 \pagestyle{fancy}
-\fancyhead[LO,LE]{qvw203 - nkh877 - }
+\fancyhead[LO,LE]{qvw203 - nkh877 - jcl187}
 \fancyhead[RO, RE]{Assignment 1}
 
+\section{I.2.1}
+\begin{itemize}
+\item plot for $(\mu, \sigma) = (-1, 1)$
+\item plot for $(\mu, \sigma) = (0, 2)$
+\item plot for $(\mu, \sigma) = (2, 3)$
+\end{itemize}
+
+\section{I.2.2}
+\begin{itemize}
+\item Plot your dataset
+\end{itemize}
+
+\section{I.2.3}
+\begin{itemize}
+\item Estimate the maximum likelihood sample mean of the data set
+\item Plot the sample mean and distribution mean as points in a 2-dimensional plot
+together with the data points.
+\item Quantify how much the sample mean deviate from
+the distribution mean.
+\item Why do you see a deviation from the distribution mean (concis diskussion)
+\end{itemize}
 \section{I.2.4}
+\begin{itemize}
+\item Plot the scaled and translated eigenvectors
+$\mu + \sqrt{\lambda_i} * e_i$
+\item Discuss how to interpret the
+eigenvectors and eigenvalues of $\sum _{ML} $
+on top of the sampled data from Question I.2.2
+\item Plot the samples from the rotated distributions in different colors in a combined plot.
+\item Explain what you see.
+\item Can you find an angle $\phi$ such that the main direction of the data sampled from
+the Gaussian distribution $\mathcal{N}(y|\mu, \sum \phi )$ points along the x axis?
+\item 
+\end{itemize}
 The length of the scaled and translated eigenvectors represent the spread from the sample mean in orthogonal directions. 
 
 \section{I.3.1}
+
 Running the algorithms for various k's, we get the following accuracies:
 
 \begin{itemize}
@@ -45,4 +76,24 @@ Running the algorithms for various k's, we get the following accuracies:
 
 As such, k = 1 is clearly the best k for this training- and test set.
 
+\section{I.3.2}
+\begin{itemize}
+\item a short description of how you proceeded (e.g., did the
+cross-validation)
+\item number of neighbors as suggested by hyperparameter selection;
+\item training and test error of k best -NN
+\end{itemize}
+
+
+\section{I.3.3}
+\begin{itemize}
+\item Mean and variance of the training data
+\item mean and variance of the transformed test data
+\item Now repeat exercise I.3.2 with the normalized data instead of the raw data.
+Perform cross-validation and report the training and test error using the value
+of k found by the cross-validation procedure.
+\item Can you explain the differences
+compared to the results achieved using the raw (not normalized) data?
+\end{itemize}
 \end{document}
+
