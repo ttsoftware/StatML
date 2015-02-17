@@ -2,14 +2,19 @@
 from __future__ import division
 from matplotlib import pyplot as plt
 import numpy as np
-import pdb
-from mpl_toolkits.mplot3d import Axes3D
 
 
 class Gauss(object):
 
     @staticmethod
     def sample_gauss(mean, covariance, size):
+        """
+        Sample a noisy sample of {size} from a Gauss distribution with given {mean} and {covariance}
+        :param mean:
+        :param covariance:
+        :param size:
+        :return:
+        """
         sample = []
         for i in range(0, size):
             z = np.random.randn(2, 1)
@@ -18,6 +23,12 @@ class Gauss(object):
 
     @staticmethod
     def draw_gauss_one(mean, deviation):
+        """
+        Draw gaussian distribution with {mean} and {deviation}, with data in np.arange
+        :param mean:
+        :param deviation:
+        :return:
+        """
         N = lambda x: (1 / (2 * np.pi * deviation ** 2) ** 0.5) * np.exp((-1 / (2 * deviation ** 2)) * (x - mean) ** 2)
 
         xs = np.arange(-10., 10., 0.1)
@@ -31,7 +42,17 @@ class Gauss(object):
 
     @staticmethod
     def draw_gauss_multi(mean=None, covariance=None, likelihood_mean_function=None, sample=None, label='Label1', fig=None):
-
+        """
+        Draws a gauss distribution, with a new sample for given {mean} and {covariance}, og existing given {sample}
+        If {likelihood_mean_function} is defined, the maximum likelihood sample mean is also included in the plot.
+        :param mean:
+        :param covariance:
+        :param likelihood_mean_function:
+        :param sample:
+        :param label:
+        :param fig:
+        :return:
+        """
         if sample is None \
                 and covariance is not None\
                 and mean is not None:
@@ -69,7 +90,13 @@ class Gauss(object):
 
     @staticmethod
     def draw_likelihood(mean, covariance):
-
+        """
+        Use the [draw_gauss_multi] function to draw a Gauss distribution sampled from {mean} and {covariance},
+        including the maximum likelihood sample mean, as defined by the [likelyhood_mean] function.
+        :param mean:
+        :param covariance:
+        :return:
+        """
         likelyhood_mean = lambda N: 1/len(N) * sum(N)
         fig = Gauss.draw_gauss_multi(mean, covariance, likelyhood_mean)
         plt.legend(loc='upper left')
@@ -78,7 +105,19 @@ class Gauss(object):
 
     @staticmethod
     def draw_eigenvectors(distribution_mean, distribution_covariance, sample=None, label='Label1'):
+        """
+        Find the eigenvectors associated with Gaussian distribution derived from {distribution_mean} and {distribution_covariance},
+        or as defined by {sample}
+        After these are found, we translate and scale the eigenvectors,
+            plot these and the lines from these translated eigenvectors to the sample mean.
 
+        Returns the translated eigenvectors
+        :param distribution_mean:
+        :param distribution_covariance:
+        :param sample:
+        :param label:
+        :return:
+        """
         if sample is None:
             sample = Gauss.sample_gauss(distribution_mean, distribution_covariance, 100)
 
@@ -147,7 +186,11 @@ class Gauss(object):
 
     @staticmethod
     def draw_rotated_covariance(distribution_mean, distribution_covariance):
-
+        """
+        Draw the distributions arrived from rotating the input {distribution_covariance}
+        :param distribution_mean:
+        :param distribution_covariance:
+        """
         sample_size = 10000
 
         sample = Gauss.sample_gauss(distribution_mean, distribution_covariance, sample_size)
@@ -189,9 +232,20 @@ class Gauss(object):
 
     @staticmethod
     def rotate_covariance(phi, covariance):
+        """
+        Rotate the covariance {phi} radians
+        :param phi:
+        :param covariance:
+        :return:
+        """
         R = np.array([[np.cos(phi), -np.sin(phi)], [np.sin(phi), np.cos(phi)]])
         return np.dot(np.dot(np.linalg.inv(R), covariance), R)
 
     @staticmethod
     def find_angle(vector):
+        """
+        Return the angle needed to rotate {vector}, such that its orthogonal vector is parallel with the x-axis
+        :param vector:
+        :return:
+        """
         return np.arccos(vector[1]/(np.linalg.norm(vector)))

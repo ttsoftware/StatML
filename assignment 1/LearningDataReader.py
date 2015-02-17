@@ -4,7 +4,11 @@ class LearningDataReader(object):
 
     @staticmethod
     def read_iris(filename):
-
+        """
+        Read our iris data, and return it in our specified data format.
+        :param filename:
+        :return:
+        """
         dataset = []
         with open(filename) as f:
             for line in f:
