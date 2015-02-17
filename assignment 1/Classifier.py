@@ -9,6 +9,13 @@ class Classifier(object):
         self.dataset = dataset
 
     def nearest_neighbour(self, k, coordinate, train_data=None):
+        """
+        Return the label with most occurences, within the k-nearest neighbours
+        :param k:
+        :param coordinate:
+        :param train_data:
+        :return:
+        """
 
         if train_data is None:
             train_data = self.dataset
@@ -32,6 +39,12 @@ class Classifier(object):
         return reduce(lambda x, y: x if labels.count(x) > y else y, labels)
 
     def cross_validator(self, s_fold=5, max_k=25):
+        """
+        Find the k from 1 to {max_k}, which yields the with best accuracy for {s_fold} validation sets.
+        :param s_fold:
+        :param max_k:
+        :return:
+        """
         s_partitions = int(len(self.dataset)/s_fold)
 
         test_partitions = []
