@@ -74,6 +74,7 @@ As we sample gaussians, we pick a random z, which means we will have a deviation
 The length of the scaled and translated eigenvectors represent the spread from the sample mean in orthogonal directions. 
 
 \item \textit{Plot the samples from the rotated distributions in different colors in a combined plot.}
+
 Underneath is a figure showing the original and the three rotated distributions, all in different colors.
 
 \includegraphics[width=\textwidth]{6.png}
@@ -82,14 +83,13 @@ Underneath is a figure showing the original and the three rotated distributions,
 
 We see that the distributions are rotated their respective angles around the distribution mean.
 
-\item \textit{Explain what you see.}
 \item \textit{Can you find an angle $\phi$ such that the main direction of the data sampled from the Gaussian distribution $\mathcal{N}(y|\mu, \sum \phi )$ points along the x axis?}
 
 To find this angle we use the information, that when it is rotated this way, the eigenvector describing the width of the spread, will be orthogonal on the x-axis and therefore directly vertical (its x-direction is zero and its y-direction is exactly its length).
 
-\item \textit{Can you find an angle $\phi$ such that the main direction of the data sampled from
-the Gaussian distribution $\mathcal{N}(y|\mu, \sum \phi )$ points along the x axis?}\\\\
-To find this angle we use the information, that when it is rotated this way, the eigenvector describing the width of the spread, will be orthogonal on the x-axis and therefore directly vertical (its x-direction is zero and its y-direction is exactly its length).\\
+\item \textit{Can you find an angle $\phi$ such that the main direction of the data sampled from the Gaussian distribution $\mathcal{N}(y|\mu, \sum \phi )$ points along the x axis?}
+
+To find this angle we use the information, that when it is rotated this way, the eigenvector describing the width of the spread, will be orthogonal on the x-axis and therefore directly vertical (its x-direction is zero and its y-direction is exactly its length).
 
 Knowing this, we can isolate $\phi$ in the equation for rotating a vector. It will still have the same length as before, so we can set up the following equation, where \textbf{a} is the vector to be rotated and \textbf{R} is the rotation-matrix:
 \begin{equation*}
