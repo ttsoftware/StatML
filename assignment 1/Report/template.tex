@@ -49,6 +49,9 @@ together with the data points.
 the distribution mean.
 \item Why do you see a deviation from the distribution mean (concis diskussion)
 \end{itemize}
+
+
+
 \section{I.2.4}
 \begin{itemize}
 \item Plot the scaled and translated eigenvectors
@@ -58,8 +61,35 @@ eigenvectors and eigenvalues of $\sum _{ML} $
 on top of the sampled data from Question I.2.2
 \item Plot the samples from the rotated distributions in different colors in a combined plot.
 \item Explain what you see.
-\item Can you find an angle $\phi$ such that the main direction of the data sampled from
-the Gaussian distribution $\mathcal{N}(y|\mu, \sum \phi )$ points along the x axis?
+\item \textit{Can you find an angle $\phi$ such that the main direction of the data sampled from
+the Gaussian distribution $\mathcal{N}(y|\mu, \sum \phi )$ points along the x axis?}\\\\
+To find this angle we use the information, that when it is rotated this way, the eigenvector describing the width of the spread, will be orthogonal on the x-axis and therefore directly vertical (its x-direction is zero and its y-direction is excactly its length).\\
+Knowing this, we can isolate $\phi$ in the equation for rotating a vector. It will still have the same length as before, so we can set up the following equation, where \textbf{a} is the vector to be rotated and \textbf{R} is the rotation-matrix:
+\begin{equation*}
+\left( \begin{array}{c}
+0 \\
+|\textbf{a}| \end{array} \right)
+=
+\textbf{R}\textbf{a}
+\end{equation*}
+\begin{equation*}
+\left( \begin{array}{c}
+0 \\
+\sqrt{x_a^2+y_a^2} 
+\end{array} \right)
+=
+\left( \begin{array}{cc}
+\cos \phi & -\sin \phi \\
+\sin \phi & \cos \phi \end{array} \right)
+\left( \begin{array}{c}
+x_a \\
+y_a \end{array} \right)
+\end{equation*} 
+Now we can isolate $\phi$ and find a general equation for calculating this angle to align the length of the spread, with the x-axis:
+\begin{equation*}
+\phi = cos^{-1}\left(\dfrac{y_a}{\sqrt{x_a^2+y_a^2}}\right)
+\end{equation*} 
+
 \item 
 \end{itemize}
 The length of the scaled and translated eigenvectors represent the spread from the sample mean in orthogonal directions. 
