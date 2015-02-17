@@ -24,9 +24,6 @@ plt.show()
 Gauss.draw_eigenvectors(mean, covariance)
 plt.show()
 
-Gauss.draw_eigenvectors(mean, covariance)
-plt.show()
-
 Gauss.draw_rotated_covariance(mean, covariance)
 plt.show()
 

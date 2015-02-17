@@ -52,7 +52,6 @@
 together with the data points.
 
 \includegraphics[width=\textwidth]{3.png}
-
 \item \textit{Quantify how much the sample mean deviate from the distribution mean.}
 
 The mean has a deviation of $0.07478...$, which is a very low deviation.
@@ -68,20 +67,29 @@ As we sample gaussians, we pick a random z, which means we will have a deviation
 \begin{itemize}
 \item \textit{Plot the scaled and translated eigenvectors $\mu + \sqrt{\lambda_i} * e_i$}
 
-\includegraphics[width=\textwidth]{6.png}
+\includegraphics[width=\textwidth]{5.png}
 
 \item \textit{Discuss how to interpret the eigenvectors and eigenvalues of $\sum _{ML} $ on top of the sampled data from Question I.2.2}
 
 The length of the scaled and translated eigenvectors represent the spread from the sample mean in orthogonal directions. 
 
 \item \textit{Plot the samples from the rotated distributions in different colors in a combined plot.}
+Underneath is a figure showing the original and the three rotated distributions, all in different colors.
 
-\includegraphics[width=\textwidth]{7.png}
+\includegraphics[width=\textwidth]{6.png}
 
-\item Explain what you see.
+\item \textit{Explain what you see.}
+
+We see that the distributions are rotated their respective angles around the distribution mean.
+
+\item \textit{Explain what you see.}
 \item \textit{Can you find an angle $\phi$ such that the main direction of the data sampled from the Gaussian distribution $\mathcal{N}(y|\mu, \sum \phi )$ points along the x axis?}
 
 To find this angle we use the information, that when it is rotated this way, the eigenvector describing the width of the spread, will be orthogonal on the x-axis and therefore directly vertical (its x-direction is zero and its y-direction is exactly its length).
+
+\item \textit{Can you find an angle $\phi$ such that the main direction of the data sampled from
+the Gaussian distribution $\mathcal{N}(y|\mu, \sum \phi )$ points along the x axis?}\\\\
+To find this angle we use the information, that when it is rotated this way, the eigenvector describing the width of the spread, will be orthogonal on the x-axis and therefore directly vertical (its x-direction is zero and its y-direction is exactly its length).\\
 
 Knowing this, we can isolate $\phi$ in the equation for rotating a vector. It will still have the same length as before, so we can set up the following equation, where \textbf{a} is the vector to be rotated and \textbf{R} is the rotation-matrix:
 \begin{equation*}
@@ -108,8 +116,9 @@ Now we can isolate $\phi$ and find a general equation for calculating this angle
 \begin{equation*}
 \phi = cos^{-1}\left(\dfrac{y_a}{\sqrt{x_a^2+y_a^2}}\right)
 \end{equation*} 
+Underneath is a figure showing the original and aligned distribution.
 
-\includegraphics[width=\textwidth]{8.png}
+\includegraphics[width=\textwidth]{7.png}
 
 \end{itemize}
 
@@ -153,6 +162,8 @@ This yields an accuracy $0.710526315789$\% for the test set, using $k_{best} = 3
 \begin{itemize}
 \item \textit{Mean and variance of the training data}
 
+\includegraphics[width=\textwidth]{8.png}
+
 We calculate the mean and variance of all N dimensions. In this case, our means are as follows:
 
 Dimension x mean: 5.7560000000000029 \\
@@ -162,6 +173,8 @@ Dimension x variance: 0.8299783129696825 \\
 Dimension y variance: 0.041738591255575462
 
 \item \textit{mean and variance of the transformed test data}
+
+\includegraphics[width=\textwidth]{9.png}
 
 Dimension x mean: 1.4316033738587545e-16 (Practically 0) \\
 Dimension y mean: 1.4316033738587545e-16 (Practically 0)
