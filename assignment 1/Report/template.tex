@@ -30,7 +30,7 @@
 
 \section{I.2.1}
 \begin{itemize}
-\item plot for $(\mu, \sigma) = {(-1, 1), (1, 2), (2, 3)}$
+\item \textit{plot for $(\mu, \sigma) = {(-1, 1), (1, 2), (2, 3)}$}
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.9\textwidth]{1.png}
@@ -38,37 +38,39 @@
     \label{fig:awesome_image}
 \end{figure}
 \end{itemize}
+
 \section{I.2.2}
 \begin{itemize}
-\item Plot your dataset
+\item \textit{Plot your dataset}
 
 \includegraphics[width=0.9\textwidth]{2.png}
 \end{itemize}
+
 \section{I.2.3}
 \begin{itemize}
-\item Estimate the maximum likelihood sample mean of the data set
-\item Plot the sample mean and distribution mean as points in a 2-dimensional plot
+\item \textit{Plot the sample mean and distribution mean as points in a 2-dimensional plot}
 together with the data points.
 
-\includegraphics[width=\textwidth]{5.png}
+\includegraphics[width=\textwidth]{3.png}
 
-\item Quantify how much the sample mean deviate from
-the distribution mean.
-\item Why do you see a deviation from the distribution mean (concis diskussion)
+\item \textit{Quantify how much the sample mean deviate from the distribution mean.}
+
+The mean has a deviation of $0.07478...$, which is a very low deviation.
+
+\item \textit{Why do you see a deviation from the distribution mean (concise diskussion)}
+
+As we sample gaussians, we pick a random z, which means we will have a deviation from the distribution mean, as the vectors with high probability won't be the same.
 \end{itemize}
 
 
 
 \section{I.2.4}
 \begin{itemize}
-\item \textit{Plot the scaled and translated eigenvectors
-$\mu + \sqrt{\lambda_i} * e_i$}
+\item \textit{Plot the scaled and translated eigenvectors $\mu + \sqrt{\lambda_i} * e_i$}
 
 \includegraphics[width=\textwidth]{6.png}
 
-\item \textit{Discuss how to interpret the
-eigenvectors and eigenvalues of $\sum _{ML} $
-on top of the sampled data from Question I.2.2}
+\item \textit{Discuss how to interpret the eigenvectors and eigenvalues of $\sum _{ML} $ on top of the sampled data from Question I.2.2}
 
 The length of the scaled and translated eigenvectors represent the spread from the sample mean in orthogonal directions. 
 
@@ -77,9 +79,10 @@ The length of the scaled and translated eigenvectors represent the spread from t
 \includegraphics[width=\textwidth]{7.png}
 
 \item Explain what you see.
-\item \textit{Can you find an angle $\phi$ such that the main direction of the data sampled from
-the Gaussian distribution $\mathcal{N}(y|\mu, \sum \phi )$ points along the x axis?}\\\\
-To find this angle we use the information, that when it is rotated this way, the eigenvector describing the width of the spread, will be orthogonal on the x-axis and therefore directly vertical (its x-direction is zero and its y-direction is exactly its length).\\
+\item \textit{Can you find an angle $\phi$ such that the main direction of the data sampled from the Gaussian distribution $\mathcal{N}(y|\mu, \sum \phi )$ points along the x axis?}
+
+To find this angle we use the information, that when it is rotated this way, the eigenvector describing the width of the spread, will be orthogonal on the x-axis and therefore directly vertical (its x-direction is zero and its y-direction is exactly its length).
+
 Knowing this, we can isolate $\phi$ in the equation for rotating a vector. It will still have the same length as before, so we can set up the following equation, where \textbf{a} is the vector to be rotated and \textbf{R} is the rotation-matrix:
 \begin{equation*}
 \left( \begin{array}{c}
