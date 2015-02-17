@@ -117,13 +117,32 @@ cross-validation)
 
 \section{I.3.3}
 \begin{itemize}
-\item Mean and variance of the training data
-\item mean and variance of the transformed test data
-\item Now repeat exercise I.3.2 with the normalized data instead of the raw data.
-Perform cross-validation and report the training and test error using the value
-of k found by the cross-validation procedure.
-\item Can you explain the differences
-compared to the results achieved using the raw (not normalized) data?
+\item \textit{Mean and variance of the training data}
+
+We calculate the mean and variance of all N dimensions. In this case, our means are as follows:
+
+Dimension x mean: 5.7560000000000029 \\
+Dimension y mean: 0.30170000000000002
+
+Dimension x variance: 0.8299783129696825 \\
+Dimension y variance: 0.041738591255575462
+
+\item \textit{mean and variance of the transformed test data}
+
+Dimension x mean: 1.4316033738587545e-16 (Practically 0) \\
+Dimension y mean: 1.4316033738587545e-16 (Practically 0)
+
+Dimension x variance: 1.0 \\
+Dimension y variance: 1.0
+
+\item \textit{$k_{best}$ as suggested by cross-validation}
+
+Running our cross-validator function on the normalized training set, we get $k_{best}$ to be $7$.
+
+\item \textit{Can you explain the differences compared to the results achieved using the raw (not normalized) data?}
+
+When we normalize across all axes (Dimensions), we essentially stretch the data points out to their normalized form, which normalizes the euclidean distances between all data points. This results in better results from the Nearest Neighbors algorithm, as we will now get less relative variance in the euclidean distances from our test data points to all the training data points.
+
 \end{itemize}
 \end{document}
 
