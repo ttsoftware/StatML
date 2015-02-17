@@ -42,9 +42,9 @@ accuracy_1 = classifier.find_accuracy(testset, 1)
 accuracy_3 = classifier.find_accuracy(testset, 3)
 accuracy_5 = classifier.find_accuracy(testset, 5)
 
-print "Accuracy k=1: " + accuracy_1
-print "Accuracy k=3: " + accuracy_3
-print "Accuracy k=5: " + accuracy_5
+print "Accuracy k=1: " + str(accuracy_1)
+print "Accuracy k=3: " + str(accuracy_3)
+print "Accuracy k=5: " + str(accuracy_5)
 
 classifier = Classifier(trainingset)
 best_k = classifier.cross_validator(5)
@@ -73,4 +73,6 @@ plt.show()
 classifier = Classifier(normalized_trainingset)
 best_k = classifier.cross_validator(5)
 accuracy_normalized = classifier.find_accuracy(normalized_testset, best_k)
-print raw_accuracy, accuracy_normalized
+
+print "Raw accuracy: " + str(raw_accuracy)
+print "Normalized accuracy: " + str(accuracy_normalized)
