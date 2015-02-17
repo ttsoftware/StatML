@@ -6,3 +6,13 @@
 assignment\ 1/__pycache__/
 assignment\ 1/*.pyc
 */*.pyc
+Report/*.aux
+*/Report/*.aux
+Report/*.pdf
+*/Report/*.pdf
+Report/*.log
+*/Report/*.log
+Report/*.out
+*/Report/*.out
+Report/*.gz
+*/Report/*.gz
