@@ -35,13 +35,15 @@ class Gauss(object):
         ys = map(lambda x: N(x), xs)
 
         fig = plt.figure('Guassian distribution')
-        plt.plot(xs, ys)
+        plt.plot(xs, ys, label=str((mean, deviation)))
         plt.axis([-5, 5, -5, 5])
+
+        plt.legend(loc='upper left')
 
         return fig
 
     @staticmethod
-    def draw_gauss_multi(mean=None, covariance=None, likelihood_mean_function=None, sample=None, label='Label1', fig=None):
+    def draw_gauss_multi(mean=None, covariance=None, likelihood_mean_function=None, sample=None, label='', fig=None):
         """
         Draws a gauss distribution, with a new sample for given {mean} and {covariance}, og existing given {sample}
         If {likelihood_mean_function} is defined, the maximum likelihood sample mean is also included in the plot.
@@ -104,7 +106,7 @@ class Gauss(object):
         return fig
 
     @staticmethod
-    def draw_eigenvectors(distribution_mean, distribution_covariance, sample=None, label='Label1'):
+    def draw_eigenvectors(distribution_mean, distribution_covariance, sample=None, label=''):
         """
         Find the eigenvectors associated with Gaussian distribution derived from {distribution_mean} and {distribution_covariance},
         or as defined by {sample}
@@ -225,7 +227,10 @@ class Gauss(object):
         Gauss.draw_eigenvectors(distribution_mean, rotate_covariance_30, sample_30, '30 degrees')
         Gauss.draw_eigenvectors(distribution_mean, rotate_covariance_60, sample_60, '60 degrees')
         Gauss.draw_eigenvectors(distribution_mean, rotate_covariance_90, sample_90, '90 degrees')
-        Gauss.draw_eigenvectors(distribution_mean, rotate_x_axis_covariance, sample_angle, '0 degrees rotated along the x-axis')
+        plt.show()
+
+        Gauss.draw_eigenvectors(distribution_mean, distribution_covariance, sample, '0 degrees')
+        Gauss.draw_eigenvectors(distribution_mean, rotate_x_axis_covariance, sample_angle, 'Rotated along the x-axis')
 
         plt.legend(loc='upper left')
         plt.show()
