@@ -30,9 +30,11 @@ class Gauss(object):
         return fig
 
     @staticmethod
-    def draw_gauss_multi(mean, covariance, likelihood_mean_function=None, sample=None, label='Label1'):
+    def draw_gauss_multi(mean=None, covariance=None, likelihood_mean_function=None, sample=None, label='Label1', fig=None):
 
-        if sample is None:
+        if sample is None \
+                and covariance is not None\
+                and mean is not None:
             sample = Gauss.sample_gauss(mean, covariance, 100)
 
         xs = map(lambda x: x.item(0), sample)
@@ -40,9 +42,13 @@ class Gauss(object):
 
         color = np.random.random(3)
 
-        fig = plt.figure('Guassian distribution')
-        plt.plot(xs, ys, 'o', color=color)
-        plt.plot(mean.item(0), mean.item(1), '^', color=np.random.random(3), label=label + ' distribution mean: ' + str((mean.item(0), mean.item(1))))
+        if fig is None:
+            fig = plt.figure('Guassian distribution')
+
+        plt.plot(xs, ys, 'o', color=color, label=label)
+
+        if mean is not None:
+            plt.plot(mean.item(0), mean.item(1), '^', color=np.random.random(3), label=label + ' distribution mean: ' + str((mean.item(0), mean.item(1))))
 
         if likelihood_mean_function is not None:
             sample_mean = likelihood_mean_function(sample)
@@ -56,6 +62,8 @@ class Gauss(object):
                 color=color,
                 label=label + " mean deviation: " + str(np.linalg.norm((mean-sample_mean)))
             )
+
+        plt.legend(loc='upper left')
 
         return fig
 

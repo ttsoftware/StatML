@@ -9,12 +9,7 @@ class Classifier(object):
         self.dataset = dataset
 
     def nearest_neighbour(self, k, coordinate, train_data=None):
-        """
 
-        :param k:
-        :param coordinate:
-        :return:
-        """
         if train_data is None:
             train_data = self.dataset
 
@@ -63,3 +58,17 @@ class Classifier(object):
 
         # Return the amount of neighbors that yields the best accuracy
         return best_k[0]
+
+    def find_accuracy(self, testset, k):
+        """
+        Find the accuracy if the self.dataset on the given testset, for k = k
+        :param testset:
+        :param k:
+        :return:
+        """
+        accuracy = []
+        for i, data in enumerate(testset):
+            label = self.nearest_neighbour(k, data['params'])
+            accuracy += [label == data['label']]
+
+        return accuracy.count(True) / len(accuracy)
