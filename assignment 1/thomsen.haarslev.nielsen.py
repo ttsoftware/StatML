@@ -30,7 +30,7 @@ plt.show()
 Gauss.draw_rotated_covariance(mean, covariance)
 plt.show()
 
-# I.3
+# I.3.1
 
 trainingset = LearningDataReader.read_iris('IrisTrain2014.dt')
 
@@ -46,9 +46,13 @@ print "Accuracy k=1: " + str(accuracy_1)
 print "Accuracy k=3: " + str(accuracy_3)
 print "Accuracy k=5: " + str(accuracy_5)
 
+# I.3.2
+
 classifier = Classifier(trainingset)
 best_k = classifier.cross_validator(5)
 raw_accuracy = classifier.find_accuracy(testset, best_k)
+
+# I.3.3
 
 normalizer = Normalizer(trainingset)
 normalized_trainingset = normalizer.normalize_means()
@@ -74,5 +78,7 @@ classifier = Classifier(normalized_trainingset)
 best_k = classifier.cross_validator(5)
 accuracy_normalized = classifier.find_accuracy(normalized_testset, best_k)
 
+# Result from I.3.2
 print "Raw accuracy: " + str(raw_accuracy)
+# Result from I.3.3
 print "Normalized accuracy: " + str(accuracy_normalized)
