@@ -108,11 +108,21 @@ As such, k = 1 is clearly the best k for this training- and test set.
 
 \section{I.3.2}
 \begin{itemize}
-\item a short description of how you proceeded (e.g., did the
-cross-validation)
+\item \textit{a short description of how you proceeded (e.g., did the
+cross-validation)}
 \item number of neighbors as suggested by hyperparameter selection;
 \item training and test error of k best -NN
 \end{itemize}
+
+Initially the algorithm creates $S$ pairs of test and training sets .
+
+Then it iterates through a each $k$ and calculates the accuracy for each test/training pair, by giving the data-points from the test set, to the nearest\_neightbour-function, that is trained with the corresponding training set.
+
+If the accuracy is greater then the previous $best\_k$, then we set it to this.
+
+The program then returns the $best\_k$.\\\\
+When run, the program suggests $best\_k = 3$.\\\\
+This yields and accuracy $0.710526315789$ for the test set, using $best\_k = 3$. This is the same as having an classification error equal to 1 with the accuracy subtracted.
 
 
 \section{I.3.3}
