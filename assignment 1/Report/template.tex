@@ -198,6 +198,22 @@ Dimension y variance: 1.0
 
 Running our cross-validator function on the normalized training set, we get $k_{best}$ to be $7$.
 
+\item \textit{Training and test error for $k_{best}$}
+
+\begin{itemize}
+	\item Raw data
+	\begin{itemize}
+		\item[•] Training set: 0.83
+		\item[•] Test set: 0.710526315789
+	\end{itemize}
+
+	\item Normalized data
+	\begin{itemize}
+		\item[•] Training set: 0.95
+		\item[•] Test set: 0.763157894737
+	\end{itemize}
+\end{itemize}
+
 \item \textit{Can you explain the differences compared to the results achieved using the raw (not normalized) data?}
 
 When we normalize across all axes (Dimensions), we essentially stretch the data points out to their normalized form, which normalizes the euclidean distances between all data points. This results in better results from the Nearest Neighbors algorithm, as we will now get less relative variance in the euclidean distances from our test data points to all the training data points.
