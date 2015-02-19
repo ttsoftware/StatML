@@ -54,4 +54,7 @@ class Normalizer(object):
         :param DataSet inputset:
         :return DataSet:
         """
-        return self.normalize(lambda d, x: (x - self.dimensions_means[d]) / self.dimensions_std[d], inputset)
+        return self.normalize(
+            lambda d, x: (x - self.dimensions_means[d]) / self.dimensions_std[d],
+            inputset
+        )

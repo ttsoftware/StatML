@@ -5,6 +5,9 @@ import scipy.spatial.distance as spatial
 class Classifier(object):
 
     def __init__(self, dataset):
+        """
+        :param DataSet dataset:
+        """
         self.dataset = dataset
 
     def nearest_neighbour(self, k, coordinate, train_data=None):
@@ -74,7 +77,7 @@ class Classifier(object):
     def find_accuracy(self, testset, k):
         """
         Find the accuracy if the self.dataset on the given testset, for k = k
-        :param testset:
+        :param DataSet testset:
         :param k:
         :return:
         """
