@@ -212,7 +212,7 @@ class Gauss(object):
         sample_covariance = likehood_covariance(sample)
 
         translated_eigenvectors = Gauss.draw_eigenvectors(distribution_mean, distribution_covariance, sample, '0 degrees')
-        angle = Gauss.find_angle(translated_eigenvectors[0])[0]
+        angle = Gauss.find_angle(translated_eigenvectors[0])
 
         rotate_covariance_30 = Gauss.rotate_covariance((1/3)*np.pi/2, sample_covariance)
         rotate_covariance_60 = Gauss.rotate_covariance((2/3)*np.pi/2, sample_covariance)
@@ -230,7 +230,7 @@ class Gauss(object):
         plt.show()
 
         Gauss.draw_eigenvectors(distribution_mean, distribution_covariance, sample, '0 degrees')
-        Gauss.draw_eigenvectors(distribution_mean, rotate_x_axis_covariance, sample_angle, 'Rotated along the x-axis')
+        Gauss.draw_eigenvectors(distribution_mean, rotate_x_axis_covariance, sample_angle, 'Rotated along the x-axis with angle: ' + str(angle))
 
         plt.legend(loc='upper left')
         plt.show()
@@ -253,4 +253,4 @@ class Gauss(object):
         :param vector:
         :return:
         """
-        return np.arccos(vector[1]/(np.linalg.norm(vector)))
+        return np.arccos(vector[1]/(np.linalg.norm(vector)))[0]
