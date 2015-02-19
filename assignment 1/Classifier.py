@@ -25,12 +25,12 @@ class Classifier(object):
         for i, data in enumerate(train_data):
             neighbours += [
                 (data,
-                 spatial.euclidean(coordinate, data['params']))
+                 spatial.euclidean(coordinate, data.params))
             ]
 
         # get labels for k-nearest neighbours
         labels = map(
-            lambda x: x[0]['label'],
+            lambda x: x[0].label,
             sorted(neighbours, key=lambda x: x[1])[0:k]
         )
 
@@ -62,8 +62,8 @@ class Classifier(object):
 
             for h in xrange(0, len(train_partitions)):
                 for j, data in enumerate(test_partitions[h]):
-                    label = self.nearest_neighbour(i, data['params'], train_partitions[h])
-                    accuracy += [label == data['label']]
+                    label = self.nearest_neighbour(i, data.params, train_partitions[h])
+                    accuracy += [label == data.label]
 
             if accuracy.count(True) / len(accuracy) > best_k[1]:
                 best_k = (i, accuracy.count(True) / len(accuracy))
@@ -80,7 +80,7 @@ class Classifier(object):
         """
         accuracy = []
         for i, data in enumerate(testset):
-            label = self.nearest_neighbour(k, data['params'])
-            accuracy += [label == data['label']]
+            label = self.nearest_neighbour(k, data.params)
+            accuracy += [label == data.label]
 
         return accuracy.count(True) / len(accuracy)

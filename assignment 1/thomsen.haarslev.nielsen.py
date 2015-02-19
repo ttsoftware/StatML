@@ -52,16 +52,14 @@ raw_accuracy = classifier.find_accuracy(testset, best_k)
 # I.3.3
 
 normalizer = Normalizer(trainingset)
-normalized_trainingset = normalizer.normalize_means()
+normalized_trainingset = normalizer.normalize_means(trainingset)
+normalized_testset = normalizer.normalize_means(testset)
 
-normalizer = Normalizer(testset)
-normalized_testset = normalizer.normalize_means()
+training_params = trainingset.unpack_numpy_array()
+normalized_training_params = normalized_trainingset.unpack_numpy_array()
 
-training_params = LearningDataReader.unpack_numpy_array(trainingset)
-normalized_training_params = LearningDataReader.unpack_numpy_array(normalized_trainingset)
-
-testset_params = LearningDataReader.unpack_numpy_array(testset)
-normalized_testset_params = LearningDataReader.unpack_numpy_array(normalized_testset)
+testset_params = testset.unpack_numpy_array()
+normalized_testset_params = normalized_testset.unpack_numpy_array()
 
 fig = Gauss.draw_gauss_multi(sample=training_params, label='Training set')
 Gauss.draw_gauss_multi(sample=normalized_training_params, label='Training set transform', fig=fig)
