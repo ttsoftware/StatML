@@ -34,7 +34,7 @@
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.9\textwidth]{1.png}
+    \includegraphics[width=0.8\textwidth]{1.png}
     \caption{$(\mu, \sigma)$}
     \label{fig:awesome_image}
 \end{figure}
@@ -126,12 +126,22 @@ Underneath is a figure showing the original and aligned distribution.
 
 \section{I.3.1}
 
-Running the algorithms for various k's, we get the following accuracies:
+Running the algorithms for various k's, we get the following accuracies for the training set, as well as the test set:
 
 \begin{itemize}
-\item[-] k = 1; 0.815789473684\%
-\item[-] k = 3; 0.710526315789\% 
-\item[-] k = 5; 0.736842105263\%
+	\item Training set
+	\begin{itemize}
+		\item k = 1; 1
+		\item k = 3; 0.83
+		\item k = 5; 0.89
+	\end{itemize}
+
+	\item Test set
+	\begin{itemize}
+		\item k = 1; 0.815789473684
+		\item k = 3; 0.710526315789
+		\item k = 5; 0.736842105263
+	\end{itemize}
 \end{itemize}
 
 As such, k = 1 is clearly the best k for this training- and test set.
@@ -155,7 +165,7 @@ When run, the program suggests $k_{best} = 3$.
 
 \item \textit{Training and test error of $k_{best}$-NN}
 
-This yields an accuracy $0.710526315789$\% for the test set, using $k_{best} = 3$. This is the same as having an classification error equal to $1 - 0.710526315789 = 0.289473684$\%. 
+The training and test error for $k_{best} = 3$ is already reported in task I.3.1. Hence, the training error is $0.83$ and the test error is $0.710526315789$.
 
 \end{itemize}
 

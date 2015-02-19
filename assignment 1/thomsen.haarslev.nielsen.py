@@ -35,13 +35,21 @@ classifier = Classifier(trainingset)
 
 testset = LearningDataReader.read_iris('IrisTest2014.dt')
 
-accuracy_1 = classifier.find_accuracy(testset, 1)
-accuracy_3 = classifier.find_accuracy(testset, 3)
-accuracy_5 = classifier.find_accuracy(testset, 5)
+accuracy_test1 = classifier.find_accuracy(testset, 1)
+accuracy_test3 = classifier.find_accuracy(testset, 3)
+accuracy_test5 = classifier.find_accuracy(testset, 5)
 
-print "Accuracy k=1: " + str(accuracy_1)
-print "Accuracy k=3: " + str(accuracy_3)
-print "Accuracy k=5: " + str(accuracy_5)
+print "Test accuracy k=1: " + str(accuracy_test1)
+print "Test accuracy k=3: " + str(accuracy_test3)
+print "Test accuracy k=5: " + str(accuracy_test5)
+
+accuracy_train1 = classifier.find_accuracy(trainingset, 1)
+accuracy_train3 = classifier.find_accuracy(trainingset, 3)
+accuracy_train5 = classifier.find_accuracy(trainingset, 5)
+
+print "Train accuracy k=1: " + str(accuracy_train1)
+print "Train accuracy k=3: " + str(accuracy_train3)
+print "Train accuracy k=5: " + str(accuracy_train5)
 
 # I.3.2
 
