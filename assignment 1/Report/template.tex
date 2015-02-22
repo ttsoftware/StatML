@@ -64,6 +64,14 @@ the distribution mean.
 
 \section{I.2.4}
 \begin{itemize}
+\item \textit{Covariance $\sum _{\textbf{ML}} for the data$}\\
+As this varies from time to time, we have included it in the legend for the alignemt plot. For this particular one\\
+\begin{equation}
+\left( \begin{array}{cc}
+a_{11} & a_{12} \\
+a_{21} & a_{22} \end{array} \right)
+\end{equation}
+
 \item \textit{Plot the scaled and translated eigenvectors
 $\mu + \sqrt{\lambda_i} * e_i$}
 
@@ -73,7 +81,9 @@ $\mu + \sqrt{\lambda_i} * e_i$}
 eigenvectors and eigenvalues of $\sum _{ML} $
 on top of the sampled data from Question I.2.2}
 
-The length of the scaled and translated eigenvectors represent the spread from the sample mean in orthogonal directions. 
+The length of the scaled and translated eigenvectors represent the spread from the sample mean in orthogonal directions.
+
+We check that the eigenvectors are orthogonal on eachother in our code, by asserting that the dot-product is equal to zero. (See Gauss.py, line 181-183).
 
 \item \textit{Plot the samples from the rotated distributions in different colors in a combined plot.}
 
@@ -117,8 +127,16 @@ y_a \end{array} \right)
 Now we can isolate $\phi$ and find a general equation for calculating this angle to align the length of the spread, with the x-axis:
 \begin{equation*}
 \phi = cos^{-1}\left(\dfrac{y_a}{\sqrt{x_a^2+y_a^2}}\right)
-\end{equation*} 
-Underneath is a figure showing the original and aligned distribution.
+\end{equation*}
+
+Underneath is a figure showing the original and aligned distribution.\\
+Our implementation does not calculate the correct angle, as seen in the plot underneath. The "aligned" one is slightly off by a few degrees.\\
+The vector used for calculating the angle was: 
+\begin{equation*}
+\left( \begin{array}{c}
+x_a \\
+y_a \end{array} \right)
+\end{equation*}
 
 \includegraphics[width=\textwidth]{7.png}
 

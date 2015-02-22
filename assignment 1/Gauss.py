@@ -229,8 +229,8 @@ class Gauss(object):
         Gauss.draw_eigenvectors(distribution_mean, rotate_covariance_90, sample_90, '90 degrees')
         plt.show()
 
-        Gauss.draw_eigenvectors(distribution_mean, distribution_covariance, sample, '0 degrees')
-        Gauss.draw_eigenvectors(distribution_mean, rotate_x_axis_covariance, sample_angle, 'Rotated along the x-axis with angle: ' + str(angle))
+        Gauss.draw_eigenvectors(distribution_mean, distribution_covariance, sample, '0 degrees and ML-covariance' + str(sample_covariance))
+        Gauss.draw_eigenvectors(distribution_mean, rotate_x_axis_covariance, sample_angle, 'Rotated along the x-axis with angle: ' + str(angle * 2 * np.pi) + ",")
 
         plt.legend(loc='upper left')
         plt.show()
@@ -253,4 +253,5 @@ class Gauss(object):
         :param vector:
         :return:
         """
+        print "Vector used for finding alignment angle: " + str(vector)
         return np.arccos(vector[1]/(np.linalg.norm(vector)))[0]
