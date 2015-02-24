@@ -21,9 +21,14 @@
 
 \begin{document}
 \pagestyle{empty}
+\pagenumbering{gobble}
 \maketitle
 \newpage
 
+\tableofcontents
+\newpage
+
+\pagenumbering{arabic}
 \pagestyle{fancy}
 \fancyhead[LO,LE]{qvw203 - nkh877 - jcl187}
 \fancyhead[RO, RE]{Assignment 1}
@@ -135,13 +140,16 @@ The vector used for calculating the angle was:
 \begin{equation*}
 \left( \begin{array}{c}
 x_a \\
-y_a \end{array} \right)
+y_a \end{array} \right) = \left( \begin{array}{c}
+1.52933503 \\
+2.41725309 \end{array} \right)
 \end{equation*}
 
 \includegraphics[width=\textwidth]{7.png}
 
 \end{itemize}
 
+\newpage
 \section{I.3.1}
 
 Running the algorithms for various k's, we get the following accuracies for the training set, as well as the test set:
@@ -187,7 +195,7 @@ The training and test error for $k_{best} = 3$ is already reported in task I.3.1
 
 \end{itemize}
 
-
+\newpage
 \section{I.3.3}
 \begin{itemize}
 \item \textit{Mean and variance of the training data}

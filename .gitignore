@@ -17,3 +17,4 @@ Report/*.out
 Report/*.gz
 */Report/*.gz
 assignment\ 1/thomsen.haarslev.nielsen.zip
+*/Report/*.toc
