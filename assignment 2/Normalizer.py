@@ -2,7 +2,6 @@ from __future__ import division
 import numpy as np
 from DataPoint import DataPoint
 from DataSet import DataSet
-from LearningDataReader import LearningDataReader
 
 
 class Normalizer(object):
@@ -29,17 +28,21 @@ class Normalizer(object):
         :param DataSet inputset:
         :return DataSet:
         """
-        inputset_values = inputset.unpack_params()
+
+        print self.dimensions_means
+        print self.dimensions_std
+
+        exit()
+
         normalized_dataset = DataSet()
         for i, data_point in enumerate(inputset):
             normalized_dataset += [DataPoint(
-                params=[
-                    map(
-                        lambda (dimension, dimension_value):
-                            normalize_function(dimension, dimension_value),
-                        enumerate(inputset_values[i])
-                    )
-                ],
+                params=map(
+                    lambda (dimension, dimension_value):
+                        normalize_function(dimension, dimension_value)
+                    ,
+                    enumerate(data_point.params)
+                ),
                 label=data_point.label
             )]
 

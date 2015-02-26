@@ -2,7 +2,7 @@ from __future__ import division
 import scipy.spatial.distance as spatial
 
 
-class Classifier(object):
+class NNClassifier(object):
 
     def __init__(self, dataset):
         """
