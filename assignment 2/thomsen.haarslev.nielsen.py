@@ -1,4 +1,5 @@
 from DataReader import DataReader
+from Gauss import Gauss
 from LDAClassifier import LDAClassifier
 from Normalizer import Normalizer
 from Regression import Regression
@@ -28,15 +29,14 @@ normalized_test_dataset = normalizer.normalize_means(test_dataset)
 
 normalized_lda = LDAClassifier(normalized_training_dataset)
 
-normalized_training_classified = normalized_lda.classify_dataset(training_dataset)
-normalized_test_classified = normalized_lda.classify_dataset(test_dataset)
+normalized_training_classified = normalized_lda.classify_dataset(normalized_training_dataset)
+normalized_test_classified = normalized_lda.classify_dataset(normalized_test_dataset)
 
-normalized_training_accuracy = LDAClassifier.find_accuracy(normalized_training_dataset, normalized_training_classified)
-normalized_test_accuracy = LDAClassifier.find_accuracy(normalized_test_dataset, normalized_test_classified)
+normalized_training_accuracy = LDAClassifier.find_accuracy(training_dataset, normalized_training_classified)
+normalized_test_accuracy = LDAClassifier.find_accuracy(test_dataset, normalized_test_classified)
 
 print 'Normalized training set accuracy: ' + str(normalized_training_accuracy)
 print 'Normalized test set accuracy: ' + str(normalized_test_accuracy)
-
 
 ############################# Sunspot prediction ###############################
 

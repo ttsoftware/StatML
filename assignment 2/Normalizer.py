@@ -28,15 +28,15 @@ class Normalizer(object):
         :param DataSet inputset:
         :return DataSet:
         """
-
         normalized_dataset = DataSet()
         for i, data_point in enumerate(inputset):
+
             normalized_dataset += [DataPoint(
                 params=map(
                     lambda (dimension, dimension_value):
                         normalize_function(dimension, dimension_value)
                     ,
-                    enumerate(data_point.params)
+                    enumerate(data_point.params[:])
                 ),
                 label=data_point.label
             )]

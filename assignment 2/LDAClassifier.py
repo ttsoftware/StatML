@@ -22,7 +22,7 @@ class LDAClassifier(object):
         for i, data_point in enumerate(dataset):
             label, score = self.classify(data_point)
             classified_set += [
-                DataPoint(data_point.params, label)
+                DataPoint(data_point.params[:], label)
             ]
         return classified_set
 
@@ -59,12 +59,13 @@ class LDAClassifier(object):
         return self.class_counts[class_name] / self.parameters_count
 
     def class_mean(self, class_name):
-        class_set = self.dataset.get_by_class(class_name)
+        class_set = self.dataset.get_by_class(class_name).unpack_numpy_array()
         return (1/self.class_counts[class_name]) * sum(class_set)
 
     def find_covariance(self):
         z = np.empty([2, 2])
-        for class_name, vectors in self.dataset.class_sets.iteritems():
+        for class_name, data_set in self.dataset.class_sets.iteritems():
+            vectors = data_set.unpack_numpy_array()
             class_mean = self.class_mean(class_name)
 
             for i, vector in enumerate(vectors):
