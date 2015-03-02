@@ -2,6 +2,7 @@
 from __future__ import division
 from matplotlib import pyplot as plt
 import numpy as np
+from DataSet import DataSet
 
 
 class Gauss(object):
@@ -43,7 +44,7 @@ class Gauss(object):
         return fig
 
     @staticmethod
-    def draw_gauss_multi(mean=None, covariance=None, likelihood_mean_function=None, sample=None, label='', fig=None):
+    def draw_gauss_multi(mean=None, covariance=None, likelihood_mean_function=None, sample=None, label='', fig=None, show=False, color=None):
         """
         Draws a gauss distribution, with a new sample for given {mean} and {covariance}, og existing given {sample}
         If {likelihood_mean_function} is defined, the maximum likelihood sample mean is also included in the plot.
@@ -63,7 +64,8 @@ class Gauss(object):
         xs = map(lambda x: x.item(0), sample)
         ys = map(lambda x: x.item(1), sample)
 
-        color = np.random.random(3)
+        if color is None:
+            color = np.random.random(3)
 
         if fig is None:
             fig = plt.figure('Guassian distribution')
@@ -87,6 +89,9 @@ class Gauss(object):
             )
 
         plt.legend(loc='upper left')
+
+        if show:
+            plt.show()
 
         return fig
 

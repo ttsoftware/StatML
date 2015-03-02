@@ -1,6 +1,9 @@
 from DataReader import DataReader
+from Gauss import Gauss
 from LDAClassifier import LDAClassifier
 from Normalizer import Normalizer
+import matplotlib.pyplot as plt
+import numpy as np
 
 training_dataset = DataReader.read_data('IrisTrain2014.dt')
 test_dataset = DataReader.read_data('IrisTest2014.dt')
@@ -25,15 +28,54 @@ normalized_test_dataset = normalizer.normalize_means(test_dataset)
 
 normalized_lda = LDAClassifier(normalized_training_dataset)
 
-normalized_training_classified = normalized_lda.classify_dataset(training_dataset)
-normalized_test_classified = normalized_lda.classify_dataset(test_dataset)
+normalized_training_classified = normalized_lda.classify_dataset(normalized_training_dataset)
+normalized_test_classified = normalized_lda.classify_dataset(normalized_test_dataset)
 
-normalized_training_accuracy = LDAClassifier.find_accuracy(normalized_training_dataset, normalized_training_classified)
-normalized_test_accuracy = LDAClassifier.find_accuracy(normalized_test_dataset, normalized_test_classified)
+normalized_training_accuracy = LDAClassifier.find_accuracy(training_dataset, normalized_training_classified)
+normalized_test_accuracy = LDAClassifier.find_accuracy(test_dataset, normalized_test_classified)
 
 print 'Normalized training set accuracy: ' + str(normalized_training_accuracy)
 print 'Normalized test set accuracy: ' + str(normalized_test_accuracy)
 
+class_sets = training_dataset.class_sets
+normalized_class_sets = normalized_training_dataset.class_sets
+
+fig = plt.figure()
+
+ax = fig.add_subplot(1, 1, 1)
+ax.spines['top'].set_color('none')
+ax.spines['bottom'].set_color('none')
+ax.spines['left'].set_color('none')
+ax.spines['right'].set_color('none')
+ax.tick_params(labelcolor='w', top='off', bottom='off', left='off', right='off')
+
+a1 = fig.add_subplot(2, 1, 1)
+
+class_colors = {
+    0: np.random.random(3),
+    1: np.random.random(3),
+    2: np.random.random(3)
+}
+
+for class_name, data_set in class_sets.iteritems():
+    fig = Gauss.draw_gauss_multi(
+        sample=data_set.unpack_numpy_array(),
+        label='training class: ' + str(class_name),
+        fig=fig,
+        color=class_colors[class_name]
+    )
+
+ax2 = fig.add_subplot(2, 1, 2)
+
+for class_name, data_set in normalized_class_sets.iteritems():
+    fig = Gauss.draw_gauss_multi(
+        sample=data_set.unpack_numpy_array(),
+        label='training normalized class: ' + str(class_name),
+        fig=fig,
+        color=class_colors[class_name]
+    )
+
+plt.show()
 
 ############################# Sunspot prediction ###############################
 
