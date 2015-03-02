@@ -25,7 +25,7 @@ normalizer = Normalizer(training_dataset)
 
 normalized_training_dataset = normalizer.normalize_means(training_dataset)
 normalized_test_dataset = normalizer.normalize_means(test_dataset)
- 
+
 normalized_lda = LDAClassifier(normalized_training_dataset)
 
 normalized_training_classified = normalized_lda.classify_dataset(normalized_training_dataset)
