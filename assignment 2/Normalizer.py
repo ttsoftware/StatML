@@ -29,11 +29,6 @@ class Normalizer(object):
         :return DataSet:
         """
 
-        print self.dimensions_means
-        print self.dimensions_std
-
-        exit()
-
         normalized_dataset = DataSet()
         for i, data_point in enumerate(inputset):
             normalized_dataset += [DataPoint(

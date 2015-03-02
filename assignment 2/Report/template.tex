@@ -13,7 +13,7 @@
 \usepackage{pdflscape}
 \usepackage{fancyhdr}
 
-\title{Assignment 1: Foundations\\Statistical Methods for Machine Learning}
+\title{Assignment 2: Foundations\\Statistical Methods for Machine Learning}
 \author{Troels Thomsen - qvw203\\Rasmus Haarslev - nkh877\\Allan Martin Nielsen - jcl187}
 
 \setlength\parindent{0pt}		% noindent through whole document
@@ -22,11 +22,16 @@
 \begin{document}
 \pagestyle{empty}
 \maketitle
+\pagenumbering{gobble}
 \newpage
 
+\tableofcontents
+\newpage
+
+\pagenumbering{arabic}
 \pagestyle{fancy}
 \fancyhead[LO,LE]{qvw203 - nkh877 - jcl187}
-\fancyhead[RO, RE]{Assignment 1}
+\fancyhead[RO, RE]{Assignment 2}
 
 \section{II.1.1}
 \begin{itemize}
@@ -44,10 +49,17 @@
 
 \section{II.1.3}
 \begin{itemize}
-\item \textit{What is the Bayes optimal classifier?}
 \item \textit{What is its (Bayes optimal) risk?}
-\item \textit{What is the risk of this classifier?}
-\item \textit{Please write down the computation for the expectation over the probabilistic output of the classifier.}
+\item \textit{What is the Bayes optimal classifier?}
+\item \textit{What is the risk of the probabilistic classifier?}
+
+We have 2 different h: $h_1(x) = 0$, and $h_2(x) = 1$. The risk of these are calculated with the risk function
+
+\begin{eqnarray}
+	\mathcal{R}_s(h = h_1) &=& \frac{1}{4} \sum^4_{i=1} (y_i - h(x_i))^2 = 0.75 \\
+	\mathcal{R}_s(h = h_2) &=& \frac{1}{4} \sum^4_{i=1} (y_i - h(x_i))^2 = 0.25
+\end{eqnarray}
+
 \end{itemize}
 
 \section{II.2.1}
