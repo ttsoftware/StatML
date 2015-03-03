@@ -62,6 +62,8 @@ This changes the covariance matrix, and since we assume identical covariance mat
 \item \textit{What is the Bayes optimal classifier?}
 \item \textit{What is the risk of the probabilistic classifier?}
 
+We did look at the slides you referred, but we still couldn't make anything out of it. We have a hard time figuring out how to construct the classification and find the hypothesis and would like an explanation of this on thursday.
+
 We have 2 different h: $h_1(x) = 0$, and $h_2(x) = 1$. The risk of these are calculated with the risk function
 
 \begin{eqnarray}
@@ -123,10 +125,32 @@ results?}
 \section{II.2.3}
 \begin{itemize}
 \item \textit{Find an expression for the solution $\textbf{w}^*$ that minimizes this error function.}
+
+To minimize the error function, we differentiate it, set it equal to 0, and then isolate w.
+
+\begin{eqnarray}
+	\frac{\delta E_D}{\delta w^T} &=& \frac{1}{2}\sum^N_{n=1}(2r_n(t_n - w^T \phi (x_n))(-\phi (x_n))\\
+	0 &=& \frac{1}{2}\sum^N_{n=1}(2r_n(t_n - w^T \phi (x_n))(-\phi (x_n))\\
+	0 &=& \frac{1}{2}\sum^N_{n=1}(2r_nt_n - 2r_nw^T \phi (x_n))(-\phi (x_n))\\
+	0 &=& \frac{1}{2}\sum^N_{n=1}2r_nt_n\phi (x_n) + 2r_nw^T \phi (x_n)^2\\	
+	0 &=& \sum^N_{n=1}r_nt_n\phi (x_n) + r_nw^T \phi (x_n)^2\\
+	0 &=& \sum^N_{n=1}(r_nt_n\phi (x_n)) + \sum^N_{n=1}(r_nw^T \phi (x_n)^2)\\
+	0 &=& \sum^N_{n=1}(r_nt_n\phi (x_n)) + w^T\sum^N_{n=1}(r_n \phi (x_n)^2)\\
+	-\sum^N_{n=1}(r_nt_n\phi (x_n)) &=& w^T\sum^N_{n=1}(r_n \phi (x_n)^2)\\
+	\frac{-\sum^N_{n=1}(r_nt_n\phi (x_n))}{\sum^N_{n=1}(r_n \phi (x_n)^2)} &=& w^T\\
+	\left(\frac{-\sum^N_{n=1}(r_nt_n\phi (x_n))}{\sum^N_{n=1}(r_n \phi (x_n)^2)}\right)^T &=& w\\
+\end{eqnarray}
+
+
 \item \textit{Give two alternative interpretations of the weighted sum-of-squares
 error function in terms of}
 \begin{itemize}
 \item[i)] \textit{data dependent noise variance}
+
+\begin{eqnarray}
+	E_D(w) &=& \frac{1}{2}\sum^N_{n=1} r_n(t_n - w^Ty(x_n, w))^2
+\end{eqnarray}
+
 \item[ii)] \textit{replicated data points}
 \end{itemize}
 \end{itemize}
