@@ -35,7 +35,7 @@ class Gauss(object):
         ys = map(lambda x: N(x), xs)
 
         fig = plt.figure('Guassian distribution')
-        plt.plot(xs, ys, label=str((mean, deviation)))
+        plt.plot(xs, ys, target=str((mean, deviation)))
         plt.axis([-5, 5, -5, 5])
 
         plt.legend(loc='upper left')
@@ -43,7 +43,7 @@ class Gauss(object):
         return fig
 
     @staticmethod
-    def draw_gauss_multi(mean=None, covariance=None, likelihood_mean_function=None, sample=None, label='', fig=None):
+    def draw_gauss_multi(mean=None, covariance=None, likelihood_mean_function=None, sample=None, target='', fig=None):
         """
         Draws a gauss distribution, with a new sample for given {mean} and {covariance}, og existing given {sample}
         If {likelihood_mean_function} is defined, the maximum likelihood sample mean is also included in the plot.
@@ -51,7 +51,7 @@ class Gauss(object):
         :param covariance:
         :param likelihood_mean_function:
         :param sample:
-        :param label:
+        :param target:
         :param fig:
         :return:
         """
@@ -68,22 +68,22 @@ class Gauss(object):
         if fig is None:
             fig = plt.figure('Guassian distribution')
 
-        plt.plot(xs, ys, 'o', color=color, label=label)
+        plt.plot(xs, ys, 'o', color=color, target=target)
 
         if mean is not None:
-            plt.plot(mean.item(0), mean.item(1), '^', color=np.random.random(3), label=label + ' distribution mean: ' + str((mean.item(0), mean.item(1))))
+            plt.plot(mean.item(0), mean.item(1), '^', color=np.random.random(3), target=target + ' distribution mean: ' + str((mean.item(0), mean.item(1))))
 
         if likelihood_mean_function is not None:
             sample_mean = likelihood_mean_function(sample)
 
             # plot maximum likelihood sample mean, and the deviation from distrubition mean
-            plt.plot(sample_mean.item(0), sample_mean.item(1), 's', color=color, label=label + ' mean: ' + str((sample_mean.item(0), sample_mean.item(1))))
+            plt.plot(sample_mean.item(0), sample_mean.item(1), 's', color=color, target=target + ' mean: ' + str((sample_mean.item(0), sample_mean.item(1))))
             plt.plot(
                 [mean.item(0), sample_mean.item(0)],
                 [mean.item(1), sample_mean.item(1)],
                 '-',
                 color=color,
-                label=label + " mean deviation: " + str(np.linalg.norm((mean-sample_mean)))
+                target=target + " mean deviation: " + str(np.linalg.norm((mean-sample_mean)))
             )
 
         plt.legend(loc='upper left')
@@ -106,7 +106,7 @@ class Gauss(object):
         return fig
 
     @staticmethod
-    def draw_eigenvectors(distribution_mean, distribution_covariance, sample=None, label=''):
+    def draw_eigenvectors(distribution_mean, distribution_covariance, sample=None, target=''):
         """
         Find the eigenvectors associated with Gaussian distribution derived from {distribution_mean} and {distribution_covariance},
         or as defined by {sample}
@@ -117,7 +117,7 @@ class Gauss(object):
         :param distribution_mean:
         :param distribution_covariance:
         :param sample:
-        :param label:
+        :param target:
         :return:
         """
         if sample is None:
@@ -147,7 +147,7 @@ class Gauss(object):
         translated_eigenvector1 = scale_eigenvector(eigenvalues[0], eigenvectors[:, 0:1])
         translated_eigenvector2 = scale_eigenvector(eigenvalues[1], eigenvectors[:, 1:2])
 
-        fig = Gauss.draw_gauss_multi(distribution_mean, distribution_covariance, likelyhood_mean, sample, label)
+        fig = Gauss.draw_gauss_multi(distribution_mean, distribution_covariance, likelyhood_mean, sample, target)
 
         color = np.random.random(3)
 
@@ -166,7 +166,7 @@ class Gauss(object):
                 [sample_mean.item(1), translated_eigenvector1.item(1)],
                 '-',
                 color=color,
-                label=label + ' Translated eigenvector 1: ' + str(np.linalg.norm(sample_mean - translated_eigenvector1))
+                target=target + ' Translated eigenvector 1: ' + str(np.linalg.norm(sample_mean - translated_eigenvector1))
             )
 
         # plot line from mean to eigenvectors
@@ -175,7 +175,7 @@ class Gauss(object):
                 [sample_mean.item(1), translated_eigenvector2.item(1)],
                 '-',
                 color=color,
-                label=label + ' Translated eigenvector 2: ' + str(np.linalg.norm(sample_mean - translated_eigenvector2))
+                target=target + ' Translated eigenvector 2: ' + str(np.linalg.norm(sample_mean - translated_eigenvector2))
             )
 
         # ensure that eigenvectors are orthogonal

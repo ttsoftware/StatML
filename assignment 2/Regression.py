@@ -3,24 +3,24 @@ import numpy as np
 from DataPoint import DataPoint
 from DataSet import DataSet
 
+
 class Regression(object):
 
-	def __init__(self, dataset, keys):
+    def __init__(self, dataset, keys):
+        self.dataset = {}
 
-		self.dataset = {}
+        for i in range(len(keys)):
+            self.dataset[keys[i]] = dataset[i]
 
-		for i in range(len(keys)):
-			self.dataset[keys[i]] = dataset[i]
+        self.phiset = np.array(map(lambda x: [1, x], keys))
 
-		self.phiset = np.array(map(lambda x: [1, x], keys))
+        self.w_ml = self.regression()
 
-		self.w_ml = self.regression()
+    def regression(self):
+        T = np.array(self.dataset.values())
 
+        return np.dot(np.linalg.pinv(self.phiset), T)
 
-	def regression(self):
-		T = np.array(self.dataset.values())
+        # def reguession(self, w_ml, guess):
 
-		return np.dot(np.linalg.pinv(self.phiset), T)
-
-	#def reguession(self, w_ml, guess):
-	#	return sum([[1, self.dataset[(guess - (2**i)) - 1716]] for i in range(5)]) / 5
+        #	return sum([[1, self.dataset[(guess - (2**i)) - 1716]] for i in range(5)]) / 5

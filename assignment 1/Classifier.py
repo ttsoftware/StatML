@@ -12,7 +12,7 @@ class Classifier(object):
 
     def nearest_neighbour(self, k, coordinate, train_data=None):
         """
-        Return the label with most occurences, within the k-nearest neighbours
+        Return the target with most occurences, within the k-nearest neighbours
         :param k:
         :param coordinate:
         :param train_data:
@@ -31,14 +31,14 @@ class Classifier(object):
                  spatial.euclidean(coordinate, data.params))
             ]
 
-        # get labels for k-nearest neighbours
-        labels = map(
-            lambda x: x[0].label,
+        # get targets for k-nearest neighbours
+        targets = map(
+            lambda x: x[0].target,
             sorted(neighbours, key=lambda x: x[1])[0:k]
         )
 
-        # return label with most occurences
-        return reduce(lambda x, y: x if labels.count(x) > y else y, labels)
+        # return target with most occurences
+        return reduce(lambda x, y: x if targets.count(x) > y else y, targets)
 
     def cross_validator(self, s_fold=5, max_k=25):
         """
@@ -65,8 +65,8 @@ class Classifier(object):
 
             for h in xrange(0, len(train_partitions)):
                 for j, data in enumerate(test_partitions[h]):
-                    label = self.nearest_neighbour(i, data.params, train_partitions[h])
-                    accuracy += [label == data.label]
+                    target = self.nearest_neighbour(i, data.params, train_partitions[h])
+                    accuracy += [target == data.target]
 
             if accuracy.count(True) / len(accuracy) > best_k[1]:
                 best_k = (i, accuracy.count(True) / len(accuracy))
@@ -83,7 +83,7 @@ class Classifier(object):
         """
         accuracy = []
         for i, data in enumerate(testset):
-            label = self.nearest_neighbour(k, data.params)
-            accuracy += [label == data.label]
+            target = self.nearest_neighbour(k, data.params)
+            accuracy += [target == data.target]
 
         return accuracy.count(True) / len(accuracy)
