@@ -23,9 +23,9 @@ class DataSet(list):
         Add datapoint to set of classes
         :param data_point:
         """
-        if data_point.label not in self.class_sets.keys():
-            self.class_sets[data_point.label] = DataSet()
-        self.class_sets[data_point.label].__iadd__([data_point], True)
+        if data_point.target not in self.class_sets.keys():
+            self.class_sets[data_point.target] = DataSet()
+        self.class_sets[data_point.target].__iadd__([data_point], True)
 
     def unpack_params(self):
         """

@@ -20,9 +20,9 @@ class LDAClassifier(object):
     def classify_dataset(self, dataset):
         classified_set = DataSet()
         for i, data_point in enumerate(dataset):
-            label, score = self.classify(data_point)
+            target, score = self.classify(data_point)
             classified_set += [
-                DataPoint(data_point.params[:], label)
+                DataPoint(data_point.params[:], target)
             ]
         return classified_set
 
@@ -49,10 +49,10 @@ class LDAClassifier(object):
         """
         # count number of types of given parameters in each class
         for i, point in enumerate(self.dataset):
-            if point.label not in self.class_counts.keys():
-                self.class_counts[point.label] = 0
+            if point.target not in self.class_counts.keys():
+                self.class_counts[point.target] = 0
 
-            self.class_counts[point.label] += 1
+            self.class_counts[point.target] += 1
             self.parameters_count += 1
 
     def class_posterier(self, class_name):
@@ -117,6 +117,6 @@ class LDAClassifier(object):
         """
         accuracy = []
         for i, data_point in enumerate(unclassified_dataset):
-            accuracy += [data_point.label == classified_dataset[i].label]
+            accuracy += [data_point.target == classified_dataset[i].target]
 
         return accuracy.count(True) / len(accuracy)

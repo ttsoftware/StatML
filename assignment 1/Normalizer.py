@@ -40,7 +40,7 @@ class Normalizer(object):
                         enumerate(inputset_values[i])
                     )
                 ],
-                label=data_point.label
+                target=data_point.label
             )]
 
         return normalized_dataset

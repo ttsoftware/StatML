@@ -47,7 +47,7 @@ sunspot_test_dataset     = DataReader.read_data("sunspotsTestStatML.dt")
 selection1_training = map(lambda x: [x.params[2], x.params[3]], sunspot_training_dataset)
 selection2_training = map(lambda x: [x.params[4]], sunspot_training_dataset)
 selection3_training = map(lambda x: x.params, sunspot_training_dataset)
-target_training     = map(lambda x: [x.label], sunspot_training_dataset)
+target_training     = map(lambda x: [x.target], sunspot_training_dataset)
 
 regression_train1 = Regression(selection1_training, target_training)
 regression_train2 = Regression(selection2_training, target_training)
@@ -61,7 +61,7 @@ reguessions_training3 = [regression_train3.reguession(x) for x in range(200)]
 selection1_test = map(lambda x: [x.params[2], x.params[3]], sunspot_test_dataset)
 selection2_test = map(lambda x: [x.params[4]], sunspot_test_dataset)
 selection3_test = map(lambda x: x.params, sunspot_test_dataset)
-target_test     = map(lambda x: [x.label], sunspot_test_dataset)
+target_test     = map(lambda x: [x.target], sunspot_test_dataset)
 
 regression_test1 = Regression(selection1_test, target_test)
 regression_test2 = Regression(selection2_test, target_test)

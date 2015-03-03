@@ -2,6 +2,6 @@
 
 class DataPoint(object):
 
-    def __init__(self, params, label=None):
+    def __init__(self, params, target=None):
         self.params = params
-        self.label = label
+        self.label = target

@@ -3,8 +3,8 @@ import numpy as np
 from DataPoint import DataPoint
 from DataSet import DataSet
 
-class Regression(object):
 
+class Regression(object):
     def __init__(self, d_mat, t_vec):
 
         self.d_mat = map(lambda x: [1] + x, d_mat)

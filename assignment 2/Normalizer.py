@@ -38,7 +38,7 @@ class Normalizer(object):
                     ,
                     enumerate(data_point.params[:])
                 ),
-                label=data_point.label
+                target=data_point.target
             )]
 
         return normalized_dataset
