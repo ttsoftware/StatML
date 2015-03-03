@@ -71,10 +71,23 @@ reguessions_test1 = [regression_test1.reguession(x) for x in range(96)]
 reguessions_test2 = [regression_test2.reguession(x) for x in range(96)]
 reguessions_test3 = [regression_test3.reguession(x) for x in range(96)]
 
-plt.figure("Selection 2")
+plt.figure("Selection 1 (test)")
+plt.plot(range(1916, 2012), map(lambda x: sum(x), selection1_test), color='g', label="Actual test data")
+plt.plot(range(1916, 2012), reguessions_test1, color='r', label="Predicted data")
+plt.legend(loc="upper left")
+plt.show()
+
+plt.figure("Selection 2 (training and test)")
 plt.plot(range(1716, 1916), map(lambda x: sum(x), selection2_training), color='b', label="Actual training data")
 plt.plot(range(1716, 1916), reguessions_training2, color='r', label="Predicted data")
 plt.plot(range(1916, 2012), map(lambda x: sum(x), selection2_test), color='g', label="Actual test data")
 plt.plot(range(1916, 2012), reguessions_test2, color='r')
 plt.legend(loc="upper left")
 plt.show()
+
+plt.figure("Selection 3 (test)")
+plt.plot(range(1916, 2012), map(lambda x: sum(x), selection3_test), color='g', label="Actual test data")
+plt.plot(range(1916, 2012), reguessions_test3, color='r', label="Predicted data")
+plt.legend(loc="upper left")
+plt.show()
+
