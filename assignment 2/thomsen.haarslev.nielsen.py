@@ -73,7 +73,6 @@ ml_guess_test1 = [ml_regression_test1.predict(x) for x in range(96)]
 ml_guess_test2 = [ml_regression_test2.predict(x) for x in range(96)]
 ml_guess_test3 = [ml_regression_test3.predict(x) for x in range(96)]
 
-""" 
 plt.figure("ML Selection 1 (test)")
 plt.plot(range(1916, 2012), target_test, color='b', label="Actual test data")
 plt.plot(range(1916, 2012), ml_guess_test1, color='r', label="Predicted data")
@@ -93,7 +92,6 @@ plt.plot(range(1916, 2012), target_test, color='b', label="Actual test data")
 plt.plot(range(1916, 2012), ml_guess_test3, color='r', label="Predicted data")
 plt.legend(loc="upper left")
 plt.show()
-"""
 
 print "RMS for ml selection1: " + str(ml_regression_test1.root_mean_square())
 print "RMS for ml selection2: " + str(ml_regression_test2.root_mean_square())
@@ -119,7 +117,6 @@ map_guess_test1 = [map_regression_test1.predict(x) for x in range(96)]
 map_guess_test2 = [map_regression_test2.predict(x) for x in range(96)]
 map_guess_test3 = [map_regression_test3.predict(x) for x in range(96)]
 
-"""
 plt.figure("MAP Selection 1 (test)")
 plt.plot(range(1916, 2012), target_test, color='b', label="Actual test data")
 plt.plot(range(1916, 2012), map_guess_test1, color='r', label="Predicted data")
@@ -139,7 +136,6 @@ plt.plot(range(1916, 2012), target_test, color='b', label="Actual test data")
 plt.plot(range(1916, 2012), map_guess_test3, color='r', label="Predicted data")
 plt.legend(loc="upper left")
 plt.show()
-"""
 
 print "RMS for map selection1: " + str(map_regression_test1.root_mean_square())
 print "RMS for map selection2: " + str(map_regression_test2.root_mean_square())
