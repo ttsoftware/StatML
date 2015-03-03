@@ -74,7 +74,6 @@ ml_guess_test1 = [ml_regression_test1.guess(x) for x in range(96)]
 ml_guess_test2 = [ml_regression_test2.guess(x) for x in range(96)]
 ml_guess_test3 = [ml_regression_test3.guess(x) for x in range(96)]
 
-"""
 plt.figure("ML Selection 1 (test)")
 plt.plot(range(1916, 2012), map(lambda x: sum(x), selection1_test), color='b', label="Actual test data")
 plt.plot(range(1916, 2012), ml_guess_test1, color='r', label="Predicted data")
@@ -102,7 +101,7 @@ ml_rms3 = RootMeanSquare(ml_regression_test3)
 print ml_rms1.root_mean_square()
 print ml_rms2.root_mean_square()
 print ml_rms3.root_mean_square()
-"""
+
 
 # MAP
 alpha = 0.5
