@@ -39,16 +39,22 @@
 	\item Standard test set accuracy: 0.789473684211
 \end{itemize}
 
-
+We notice that the test accuracy is slightly better than the one found with K-NN in the previous assignment, which was approximately 0.76.
 
 \section{II.1.2}
 \begin{itemize}
 	\item Normalized training set accuracy: 0.6
-		  Normalized test set accuracy: 0.684210526316
-	\item \textit{Test error of LDA with trasformed data}
-	\item \textit{Explain what is happening}
-	\item \textit{Explain why it happens}
+	\item Normalized test set accuracy: 0.684210526316
 \end{itemize}
+
+We notice a worse result after normalization, which is not quite what we expected. We expected at least the same results, since we are normalizing with a linearly mapping.
+However as shown in the figures below, the relative distance between the datapoints have changed.
+
+\includegraphics[scale=0.25]{lda_normalization.png}
+
+\includegraphics[scale=0.25]{lda_normalized_side.png}
+
+This changes the covariance matrix, and since we assume identical covariance matrix for all class-conditionals, we get unpredictable results when normalizing for 0 mean and variance, before applying LDA.
 
 \section{II.1.3}
 \begin{itemize}
