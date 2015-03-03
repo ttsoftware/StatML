@@ -2,7 +2,8 @@ from DataReader import DataReader
 from Gauss import Gauss
 from LDAClassifier import LDAClassifier
 from Normalizer import Normalizer
-from Regression import Regression
+from MLRegression import MLRegression
+from MAPRegression import MAPRegression
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -41,53 +42,95 @@ print 'Normalized test set accuracy: ' + str(normalized_test_accuracy)
 ############################# Sunspot prediction ###############################
 
 sunspot_training_dataset = DataReader.read_data("sunspotsTrainStatML.dt")
-sunspot_test_dataset     = DataReader.read_data("sunspotsTestStatML.dt")
+sunspot_test_dataset = DataReader.read_data("sunspotsTestStatML.dt")
 
-    # Training
+# Training
 selection1_training = map(lambda x: [x.params[2], x.params[3]], sunspot_training_dataset)
 selection2_training = map(lambda x: [x.params[4]], sunspot_training_dataset)
 selection3_training = map(lambda x: x.params, sunspot_training_dataset)
-target_training     = map(lambda x: [x.target], sunspot_training_dataset)
+target_training = map(lambda x: [x.target], sunspot_training_dataset)
 
-regression_train1 = Regression(selection1_training, target_training)
-regression_train2 = Regression(selection2_training, target_training)
-regression_train3 = Regression(selection3_training, target_training)
-
-reguessions_training1 = [regression_train1.reguession(x) for x in range(200)]
-reguessions_training2 = [regression_train2.reguession(x) for x in range(200)]
-reguessions_training3 = [regression_train3.reguession(x) for x in range(200)]
-
-    # Test
+# Test
 selection1_test = map(lambda x: [x.params[2], x.params[3]], sunspot_test_dataset)
 selection2_test = map(lambda x: [x.params[4]], sunspot_test_dataset)
 selection3_test = map(lambda x: x.params, sunspot_test_dataset)
-target_test     = map(lambda x: [x.target], sunspot_test_dataset)
+target_test = map(lambda x: [x.target], sunspot_test_dataset)
 
-regression_test1 = Regression(selection1_test, target_test)
-regression_test2 = Regression(selection2_test, target_test)
-regression_test3 = Regression(selection3_test, target_test)
+# ML
+ml_regression_train1 = MLRegression(selection1_training, target_training)
+ml_regression_train2 = MLRegression(selection2_training, target_training)
+ml_regression_train3 = MLRegression(selection3_training, target_training)
 
-reguessions_test1 = [regression_test1.reguession(x) for x in range(96)]
-reguessions_test2 = [regression_test2.reguession(x) for x in range(96)]
-reguessions_test3 = [regression_test3.reguession(x) for x in range(96)]
+ml_regression_test1 = MLRegression(selection1_test, target_test)
+ml_regression_test2 = MLRegression(selection2_test, target_test)
+ml_regression_test3 = MLRegression(selection3_test, target_test)
 
-plt.figure("Selection 1 (test)")
-plt.plot(range(1916, 2012), map(lambda x: sum(x), selection1_test), color='g', label="Actual test data")
-plt.plot(range(1916, 2012), reguessions_test1, color='r', label="Predicted data")
+ml_guess_training1 = [ml_regression_train1.guess(x) for x in range(200)]
+ml_guess_training2 = [ml_regression_train2.guess(x) for x in range(200)]
+ml_guess_training3 = [ml_regression_train3.guess(x) for x in range(200)]
+
+ml_guess_test1 = [ml_regression_test1.guess(x) for x in range(96)]
+ml_guess_test2 = [ml_regression_test2.guess(x) for x in range(96)]
+ml_guess_test3 = [ml_regression_test3.guess(x) for x in range(96)]
+
+"""
+plt.figure("ML Selection 1 (test)")
+plt.plot(range(1916, 2012), map(lambda x: sum(x), selection1_test), color='b', label="Actual test data")
+plt.plot(range(1916, 2012), ml_guess_test1, color='r', label="Predicted data")
 plt.legend(loc="upper left")
 plt.show()
 
-plt.figure("Selection 2 (training and test)")
+plt.figure("ML Selection 2 (training and test)")
 plt.plot(range(1716, 1916), map(lambda x: sum(x), selection2_training), color='b', label="Actual training data")
-plt.plot(range(1716, 1916), reguessions_training2, color='r', label="Predicted data")
-plt.plot(range(1916, 2012), map(lambda x: sum(x), selection2_test), color='g', label="Actual test data")
-plt.plot(range(1916, 2012), reguessions_test2, color='r')
+plt.plot(range(1716, 1916), ml_guess_training2, color='r', label="Predicted data")
+plt.plot(range(1916, 2012), map(lambda x: sum(x), selection2_test), color='b', label="Actual test data")
+plt.plot(range(1916, 2012), ml_guess_test2, color='r')
 plt.legend(loc="upper left")
 plt.show()
 
-plt.figure("Selection 3 (test)")
-plt.plot(range(1916, 2012), map(lambda x: sum(x), selection3_test), color='g', label="Actual test data")
-plt.plot(range(1916, 2012), reguessions_test3, color='r', label="Predicted data")
+plt.figure("ML Selection 3 (test)")
+plt.plot(range(1916, 2012), map(lambda x: sum(x), selection3_test), color='b', label="Actual test data")
+plt.plot(range(1916, 2012), ml_guess_test3, color='r', label="Predicted data")
+plt.legend(loc="upper left")
+plt.show()
+"""
+
+# MAP
+alpha = 0.5
+beta = 1
+
+map_regression_train1 = MAPRegression(alpha, beta, selection1_training, target_training)
+map_regression_train2 = MAPRegression(alpha, beta, selection2_training, target_training)
+map_regression_train3 = MAPRegression(alpha, beta, selection3_training, target_training)
+
+map_regression_test1 = MAPRegression(alpha, beta, selection1_test, target_training)
+map_regression_test2 = MAPRegression(alpha, beta, selection2_test, target_training)
+map_regression_test3 = MAPRegression(alpha, beta, selection3_test, target_training)
+
+map_guess_training1 = [map_regression_train1.guess(x) for x in range(200)]
+map_guess_training2 = [map_regression_train2.guess(x) for x in range(200)]
+map_guess_training3 = [map_regression_train3.guess(x) for x in range(200)]
+
+map_guess_test1 = [map_regression_test1.guess(x) for x in range(96)]
+map_guess_test2 = [map_regression_test2.guess(x) for x in range(96)]
+map_guess_test3 = [map_regression_test3.guess(x) for x in range(96)]
+
+plt.figure("MAP Selection 1 (test)")
+plt.plot(range(1916, 2012), map(lambda x: sum(x), selection1_test), color='b', label="Actual test data")
+plt.plot(range(1916, 2012), map_guess_test1, color='r', label="Predicted data")
 plt.legend(loc="upper left")
 plt.show()
 
+plt.figure("MAP Selection 2 (training and test)")
+plt.plot(range(1716, 1916), map(lambda x: sum(x), selection2_training), color='b', label="Actual training data")
+plt.plot(range(1716, 1916), map_guess_training2, color='r', label="Predicted data")
+plt.plot(range(1916, 2012), map(lambda x: sum(x), selection2_test), color='b', label="Actual test data")
+plt.plot(range(1916, 2012), map_guess_test2, color='r')
+plt.legend(loc="upper left")
+plt.show()
+
+plt.figure("MAP Selection 3 (test)")
+plt.plot(range(1916, 2012), map(lambda x: sum(x), selection3_test), color='b', label="Actual test data")
+plt.plot(range(1916, 2012), map_guess_test3, color='r', label="Predicted data")
+plt.legend(loc="upper left")
+plt.show()

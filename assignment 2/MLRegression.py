@@ -4,7 +4,8 @@ from DataPoint import DataPoint
 from DataSet import DataSet
 
 
-class Regression(object):
+class MLRegression(object):
+
     def __init__(self, d_mat, t_vec):
         """
         prepends 1's onto each row in the design matrix, and runs regressions,
@@ -19,7 +20,6 @@ class Regression(object):
 
         self.w_ml = self.regression()
 
-
     def regression(self):
         """
         Returns the dot product of the pseudo-inverse of the design matrix,
@@ -27,7 +27,7 @@ class Regression(object):
         """
         return np.dot(np.linalg.pinv(self.d_mat), self.t_vec)
 
-    def reguession(self, guess):
+    def guess(self, guess):
         """
         Returns the dot product of the transposed w_ml, and the design matrix
         row corresponding to the given guess.
