@@ -1,8 +1,9 @@
 import math
-from MLRegression import MLRegression
 import numpy as np
 
+
 class RootMeanSquare(object):
+
     def __init__(self, regression):
         self.reg = regression
 

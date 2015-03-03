@@ -95,15 +95,13 @@ plt.plot(range(1916, 2012), ml_guess_test3, color='r', label="Predicted data")
 plt.legend(loc="upper left")
 plt.show()
 
-rms1 = RootMeanSquare(regression_test1)
-rms2 = RootMeanSquare(regression_test2)
-rms3 = RootMeanSquare(regression_test3)
+ml_rms1 = RootMeanSquare(ml_regression_test1)
+ml_rms2 = RootMeanSquare(ml_regression_test2)
+ml_rms3 = RootMeanSquare(ml_regression_test3)
 
-print rms1.root_mean_square()
-print rms2.root_mean_square()
-print rms3.root_mean_square()
-
-
+print ml_rms1.root_mean_square()
+print ml_rms2.root_mean_square()
+print ml_rms3.root_mean_square()
 """
 
 # MAP
@@ -114,9 +112,9 @@ map_regression_train1 = MAPRegression(alpha, beta, selection1_training, target_t
 map_regression_train2 = MAPRegression(alpha, beta, selection2_training, target_training)
 map_regression_train3 = MAPRegression(alpha, beta, selection3_training, target_training)
 
-map_regression_test1 = MAPRegression(alpha, beta, selection1_test, target_training)
-map_regression_test2 = MAPRegression(alpha, beta, selection2_test, target_training)
-map_regression_test3 = MAPRegression(alpha, beta, selection3_test, target_training)
+map_regression_test1 = MAPRegression(alpha, beta, selection1_test, target_test)
+map_regression_test2 = MAPRegression(alpha, beta, selection2_test, target_test)
+map_regression_test3 = MAPRegression(alpha, beta, selection3_test, target_test)
 
 map_guess_training1 = [map_regression_train1.guess(x) for x in range(200)]
 map_guess_training2 = [map_regression_train2.guess(x) for x in range(200)]
