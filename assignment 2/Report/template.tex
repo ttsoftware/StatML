@@ -97,6 +97,21 @@ results?}
 \section{II.2.3}
 \begin{itemize}
 \item \textit{Find an expression for the solution $\textbf{w}^*$ that minimizes this error function.}
+
+\begin{eqnarray}
+	\frac{\delta E_D}{\delta w^T} &=& \frac{1}{2}\sum^N_{n=1}(2r_n(t_n - w^T \phi (x_n))(-\phi (x_n))\\
+	0 &=& \frac{1}{2}\sum^N_{n=1}(2r_n(t_n - w^T \phi (x_n))(-\phi (x_n))\\
+	0 &=& \frac{1}{2}\sum^N_{n=1}(2r_nt_n - 2r_nw^T \phi (x_n))(-\phi (x_n))\\
+	0 &=& \frac{1}{2}\sum^N_{n=1}2r_nt_n\phi (x_n) + 2r_nw^T \phi (x_n)^2\\	
+	0 &=& \sum^N_{n=1}r_nt_n\phi (x_n) + r_nw^T \phi (x_n)^2\\
+	0 &=& \sum^N_{n=1}(r_nt_n\phi (x_n)) + \sum^N_{n=1}(r_nw^T \phi (x_n)^2)\\
+	0 &=& \sum^N_{n=1}(r_nt_n\phi (x_n)) + w^T\sum^N_{n=1}(r_n \phi (x_n)^2)\\
+	-\sum^N_{n=1}(r_nt_n\phi (x_n)) &=& w^T\sum^N_{n=1}(r_n \phi (x_n)^2)\\
+	\frac{-\sum^N_{n=1}(r_nt_n\phi (x_n))}{\sum^N_{n=1}(r_n \phi (x_n)^2)} &=& w^T\\
+	\left(\frac{-\sum^N_{n=1}(r_nt_n\phi (x_n))}{\sum^N_{n=1}(r_n \phi (x_n)^2)}\right)^T &=& w\\
+\end{eqnarray}
+
+
 \item \textit{Give two alternative interpretations of the weighted sum-of-squares
 error function in terms of}
 \begin{itemize}
