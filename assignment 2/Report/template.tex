@@ -73,25 +73,51 @@ We have 2 different h: $h_1(x) = 0$, and $h_2(x) = 1$. The risk of these are cal
 
 \section{II.2.1}
 \begin{itemize}
-\item \textit{Which of the 3 models provide the best prediction?}
+\item \textit{Which of the 3 models provide the best prediction?} 
 the RMS for the three selections on the test data are as mentioned:
-\begin{itemize}
-\item \textbf{RMS Selection 1:} 14.1908367116
-\item \textbf{RMS Selection 2:} 32.3499280689 
-\item \textbf{RMS Selection 3:} 21.3976905237
+		\begin{itemize}
+		\item \textbf{RMS Selection 1:} 29.9041602819
+		\item \textbf{RMS Selection 2:} 28.6056297404
+		\item \textbf{RMS Selection 3:} 17.9638970659
+	\end{itemize}
 \end{itemize}
-\end{itemize}
+
+\begin{figure}[H]
+	\includegraphics[scale=0.5]{ml_selection_1.png}
+	\caption{Selection 1}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[scale=0.5]{ml_selection_2.png}
+	\caption{Selection 2}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[scale=0.5]{ml_selection_3.png}
+	\caption{Selection 3}
+\end{figure}
+
+We see from our figures that selection 3 gives the best fit on the test set, while also having the lowest RMS of 17.9638970659.
 
 \section{II.2.2}
 \begin{itemize}
-\item \textit{Using the MAP estimate and (3.3) apply each model to the test
-set and compute and plot the root mean square (RMS) error for different values
-of the prior precision parameter $\alpha$.}
 \item \textit{Which of the three models seem to provide
 the best prediction?}
+	\begin{itemize}
+		\item Like with the ML solution, the 3rd selection using the highest number of years seems to fit the best. This is confirmed by the RMS values.
+	\end{itemize}
 \item \textit{How do the results compare with the maximum likelihood
 results?}
+	These are our RMS results for $\alpha = 0.5$
+	\begin{itemize}
+		\item \textbf{RMS for map selection1:} 29.9112229729
+		\item \textbf{RMS for map selection2:} 28.6058321345
+		\item \textbf{RMS for map selection3:} 17.9664239687
+	\end{itemize}
 \item \textit{For what value of the prior precision parameter $\alpha$ does the RMS error go below the RMS for the maximum likelihood solution from Question II.2.1?}
+	\begin{itemize}
+		\item We could not find an $\alpha$ for which the RMS for MAP was lower than that found in our ML solution. As expected we came closer and closer to $RMS_{ML}$ when $\alpha$ approached 0, but as we increased $\alpha$, so did our $RMS_{MAP}$ and as such we could not improve on the results found with the ML solution.
+	\end{itemize}
 \end{itemize}
 
 \section{II.2.3}

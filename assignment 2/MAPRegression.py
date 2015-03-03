@@ -1,20 +1,16 @@
 from __future__ import division
 import numpy as np
+import Regression as Regression
 
 
-class MAPRegression(object):
+class MAPRegression(Regression.Regression):
+    def __init__(self, alpha, beta, d_mat, t_vec):
+        super(MAPRegression, self).__init__(d_mat, t_vec)
 
-    def __init__(self, alpha, beta, design_matrix, target_matrix):
+        S_N = np.linalg.inv(alpha * np.identity(self.d_mat.shape[1]) + beta * np.dot(self.d_mat.T, self.d_mat))
 
-        design_matrix = np.array(map(lambda x: [1] + x, design_matrix))
-        target_matrix = np.array(target_matrix)
+        M_N = beta * np.dot(np.dot(S_N, self.d_mat.T), self.t_vec)
+        self.w = M_N
 
-        self.design_matrix = design_matrix
-
-        S_N = np.linalg.inv(alpha*np.identity(design_matrix.shape[1]) + beta * np.dot(design_matrix.T, design_matrix))
-
-        M_N = beta * np.dot(np.dot(S_N, design_matrix.T), target_matrix)
-        self.w_map = M_N
-
-    def guess(self, x):
-        return np.dot(self.w_map.T, self.design_matrix[x])[0]
+    def predict(self, x):
+        return np.dot(self.w.T, self.d_mat[x])[0]

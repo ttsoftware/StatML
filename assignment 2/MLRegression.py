@@ -2,23 +2,15 @@ from __future__ import division
 import numpy as np
 from DataPoint import DataPoint
 from DataSet import DataSet
+import Regression as Regression
 
 
-class MLRegression(object):
+class MLRegression(Regression.Regression):
 
     def __init__(self, d_mat, t_vec):
-        """
-        prepends 1's onto each row in the design matrix, and runs regressions,
-        to find w_ml.
+        super(MLRegression, self).__init__(d_mat, t_vec)
 
-        :param d_mat (Design matric):
-        :param t_vec (Target vector:
-        """
-
-        self.d_mat = map(lambda x: [1] + x, d_mat)
-        self.t_vec = t_vec
-
-        self.w_ml = self.regression()
+        self.w = self.regression()
 
     def regression(self):
         """
@@ -27,9 +19,9 @@ class MLRegression(object):
         """
         return np.dot(np.linalg.pinv(self.d_mat), self.t_vec)
 
-    def guess(self, guess):
+    def predict(self, x):
         """
-        Returns the dot product of the transposed w_ml, and the design matrix
+        Returns the dot product of the transposed w, and the design matrix
         row corresponding to the given guess.
         """
-        return sum(np.dot(self.w_ml.T, self.d_mat[guess]))
+        return sum(np.dot(self.w.T, self.d_mat[x]))
