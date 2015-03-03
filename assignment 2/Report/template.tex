@@ -98,6 +98,8 @@ results?}
 \begin{itemize}
 \item \textit{Find an expression for the solution $\textbf{w}^*$ that minimizes this error function.}
 
+To minimize the error function, we differentiate it, set it equal to 0, and then isolate w.
+
 \begin{eqnarray}
 	\frac{\delta E_D}{\delta w^T} &=& \frac{1}{2}\sum^N_{n=1}(2r_n(t_n - w^T \phi (x_n))(-\phi (x_n))\\
 	0 &=& \frac{1}{2}\sum^N_{n=1}(2r_n(t_n - w^T \phi (x_n))(-\phi (x_n))\\
@@ -116,6 +118,11 @@ results?}
 error function in terms of}
 \begin{itemize}
 \item[i)] \textit{data dependent noise variance}
+
+\begin{eqnarray}
+	E_D(w) &=& \frac{1}{2}\sum^N_{n=1} r_n(t_n - w^Ty(x_n, w))^2
+\end{eqnarray}
+
 \item[ii)] \textit{replicated data points}
 \end{itemize}
 \end{itemize}
