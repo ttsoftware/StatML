@@ -51,9 +51,14 @@ selection1_test = map(lambda x: [x.params[2], x.params[3]], sunspot_test_dataset
 selection2_test = map(lambda x: [x.params[4]], sunspot_test_dataset)
 selection3_test = map(lambda x: x.params, sunspot_test_dataset)
 
+regression_selection1 = Regression(selection1_training, range(1716, 1916))
+regression_selection2 = Regression(selection2_training, range(1716, 1916))
+regression_selection3 = Regression(selection3_training, range(1716, 1916))
+
+"""
 regression_training = Regression(sunspot_training_dataset, 1716)
 
-w1_training = Regression.regression(map(lambda x: [1, x], range(1716, 1916)), selection1_training, )
+w1_training = Regression.regression(map(lambda x: [1, x], range(1716, 1916)), selection1_training)
 w2_training = Regression.regression(map(lambda x: [1, x], range(1716, 1916)), selection2_training)
 w3_training = Regression.regression(map(lambda x: [1, x], range(1716, 1916)), selection3_training)
 
@@ -81,3 +86,4 @@ plt.figure("Regression")
 plt.plot(range(1916, 2012), map(lambda x: sum(x), selection3_test), '.b')
 plt.plot(range(1916, 2012), reguessions3_test, 'r')
 plt.show()
+"""
