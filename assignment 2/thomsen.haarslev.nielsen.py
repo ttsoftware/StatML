@@ -73,7 +73,7 @@ ml_guess_test1 = [ml_regression_test1.predict(x) for x in range(96)]
 ml_guess_test2 = [ml_regression_test2.predict(x) for x in range(96)]
 ml_guess_test3 = [ml_regression_test3.predict(x) for x in range(96)]
 
-"""
+""" 
 plt.figure("ML Selection 1 (test)")
 plt.plot(range(1916, 2012), target_test, color='b', label="Actual test data")
 plt.plot(range(1916, 2012), ml_guess_test1, color='r', label="Predicted data")
