@@ -41,49 +41,40 @@ print 'Normalized test set accuracy: ' + str(normalized_test_accuracy)
 ############################# Sunspot prediction ###############################
 
 sunspot_training_dataset = DataReader.read_data("sunspotsTrainStatML.dt")
-sunspot_test_dataset 	 = DataReader.read_data("sunspotsTestStatML.dt")
+sunspot_test_dataset     = DataReader.read_data("sunspotsTestStatML.dt")
 
+    # Training
 selection1_training = map(lambda x: [x.params[2], x.params[3]], sunspot_training_dataset)
 selection2_training = map(lambda x: [x.params[4]], sunspot_training_dataset)
 selection3_training = map(lambda x: x.params, sunspot_training_dataset)
+target_training     = map(lambda x: [x.label], sunspot_training_dataset)
 
+regression_train1 = Regression(selection1_training, target_training)
+regression_train2 = Regression(selection2_training, target_training)
+regression_train3 = Regression(selection3_training, target_training)
+
+reguessions_training1 = [regression_train1.reguession(x) for x in range(200)]
+reguessions_training2 = [regression_train2.reguession(x) for x in range(200)]
+reguessions_training3 = [regression_train3.reguession(x) for x in range(200)]
+
+    # Test
 selection1_test = map(lambda x: [x.params[2], x.params[3]], sunspot_test_dataset)
 selection2_test = map(lambda x: [x.params[4]], sunspot_test_dataset)
 selection3_test = map(lambda x: x.params, sunspot_test_dataset)
+target_test     = map(lambda x: [x.label], sunspot_test_dataset)
 
-regression_selection1 = Regression(selection1_training, range(1716, 1916))
-regression_selection2 = Regression(selection2_training, range(1716, 1916))
-regression_selection3 = Regression(selection3_training, range(1716, 1916))
+regression_test1 = Regression(selection1_test, target_test)
+regression_test2 = Regression(selection2_test, target_test)
+regression_test3 = Regression(selection3_test, target_test)
 
-"""
-regression_training = Regression(sunspot_training_dataset, 1716)
+reguessions_test1 = [regression_test1.reguession(x) for x in range(96)]
+reguessions_test2 = [regression_test2.reguession(x) for x in range(96)]
+reguessions_test3 = [regression_test3.reguession(x) for x in range(96)]
 
-w1_training = Regression.regression(map(lambda x: [1, x], range(1716, 1916)), selection1_training)
-w2_training = Regression.regression(map(lambda x: [1, x], range(1716, 1916)), selection2_training)
-w3_training = Regression.regression(map(lambda x: [1, x], range(1716, 1916)), selection3_training)
-
-reguessions_training = [Regression.reguession(w2_training, x) for x in range(1716, 1916)]
-reguessions1_test = [Regression.reguession(w1_training, x) for x in range(1916, 2012)]
-reguessions2_test = [Regression.reguession(w2_training, x) for x in range(1916, 2012)]
-reguessions3_test = [Regression.reguession(w3_training, x) for x in range(1916, 2012)]
-
-plt.figure("Regression")
-plt.plot(range(1716, 1916), map(lambda x: sum(x), selection2_training), '.b')
-plt.plot(range(1716, 1916), reguessions_training, 'r')
+plt.figure("Selection 2")
+plt.plot(range(1716, 1916), map(lambda x: sum(x), selection2_training), color='b', label="Actual training data")
+plt.plot(range(1716, 1916), reguessions_training2, color='r', label="Predicted data")
+plt.plot(range(1916, 2012), map(lambda x: sum(x), selection2_test), color='g', label="Actual test data")
+plt.plot(range(1916, 2012), reguessions_test2, color='r')
+plt.legend(loc="upper left")
 plt.show()
-
-plt.figure("Regression")
-plt.plot(range(1916, 2012), map(lambda x: sum(x), selection1_test), '.b')
-plt.plot(range(1916, 2012), reguessions1_test, 'r')
-plt.show()
-
-plt.figure("Regression")
-plt.plot(range(1916, 2012), map(lambda x: sum(x), selection2_test), '.b')
-plt.plot(range(1916, 2012), reguessions2_test, 'r')
-plt.show()
-
-plt.figure("Regression")
-plt.plot(range(1916, 2012), map(lambda x: sum(x), selection3_test), '.b')
-plt.plot(range(1916, 2012), reguessions3_test, 'r')
-plt.show()
-"""
