@@ -5,6 +5,7 @@ from Normalizer import Normalizer
 from Regression import Regression
 import numpy as np
 import matplotlib.pyplot as plt
+from RootMeanSquare import RootMeanSquare
 
 training_dataset = DataReader.read_data('IrisTrain2014.dt')
 test_dataset = DataReader.read_data('IrisTest2014.dt')
@@ -71,6 +72,8 @@ reguessions_test1 = [regression_test1.reguession(x) for x in range(96)]
 reguessions_test2 = [regression_test2.reguession(x) for x in range(96)]
 reguessions_test3 = [regression_test3.reguession(x) for x in range(96)]
 
+
+
 plt.figure("Selection 1 (test)")
 plt.plot(range(1916, 2012), map(lambda x: sum(x), selection1_test), color='g', label="Actual test data")
 plt.plot(range(1916, 2012), reguessions_test1, color='r', label="Predicted data")
@@ -90,4 +93,14 @@ plt.plot(range(1916, 2012), map(lambda x: sum(x), selection3_test), color='g', l
 plt.plot(range(1916, 2012), reguessions_test3, color='r', label="Predicted data")
 plt.legend(loc="upper left")
 plt.show()
+
+rms1 = RootMeanSquare(regression_test1)
+rms2 = RootMeanSquare(regression_test2)
+rms3 = RootMeanSquare(regression_test3)
+
+print rms1.root_mean_square()
+print rms2.root_mean_square()
+print rms3.root_mean_square()
+
+
 

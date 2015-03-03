@@ -16,7 +16,6 @@ class Regression(object):
 
         self.d_mat = map(lambda x: [1] + x, d_mat)
         self.t_vec = t_vec
-
         self.w_ml = self.regression()
 
 
@@ -27,9 +26,11 @@ class Regression(object):
         """
         return np.dot(np.linalg.pinv(self.d_mat), self.t_vec)
 
+
     def reguession(self, guess):
         """
         Returns the dot product of the transposed w_ml, and the design matrix
         row corresponding to the given guess.
         """
         return sum(np.dot(self.w_ml.T, self.d_mat[guess]))
+
