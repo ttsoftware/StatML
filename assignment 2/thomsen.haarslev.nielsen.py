@@ -6,6 +6,7 @@ from MLRegression import MLRegression
 from MAPRegression import MAPRegression
 import numpy as np
 import matplotlib.pyplot as plt
+from RootMeanSquare import RootMeanSquare
 
 training_dataset = DataReader.read_data('IrisTrain2014.dt')
 test_dataset = DataReader.read_data('IrisTest2014.dt')
@@ -93,6 +94,16 @@ plt.plot(range(1916, 2012), map(lambda x: sum(x), selection3_test), color='b', l
 plt.plot(range(1916, 2012), ml_guess_test3, color='r', label="Predicted data")
 plt.legend(loc="upper left")
 plt.show()
+
+rms1 = RootMeanSquare(regression_test1)
+rms2 = RootMeanSquare(regression_test2)
+rms3 = RootMeanSquare(regression_test3)
+
+print rms1.root_mean_square()
+print rms2.root_mean_square()
+print rms3.root_mean_square()
+
+
 """
 
 # MAP
