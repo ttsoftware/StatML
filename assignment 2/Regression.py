@@ -21,7 +21,7 @@ class Regression(object):
 
     def root_mean_square(self):
         """
-        Find the root-mean-square error for the given regression
+        Find the root-dimension_means-square error for the given regression
         :return:
         """
         N = len(self.d_mat)

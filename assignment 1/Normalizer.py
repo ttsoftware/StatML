@@ -16,7 +16,7 @@ class Normalizer(object):
         for i in range(len(self.values[0])):
             flat_dimensions += [map(lambda x: x[i], self.values)]
 
-        self.dimensions_means = []  # mean for each dimension
+        self.dimensions_means = []  # dimension_means for each dimension
         self.dimensions_std = []  # standard deviation for each dimension
         for dim, dim_values in enumerate(flat_dimensions):
             self.dimensions_means += [np.mean(dim_values)]
@@ -47,8 +47,8 @@ class Normalizer(object):
 
     def normalize_means(self, inputset):
         """
-        Return normalized version of inputset, normalized to each dimension in mean 0 and variance 1 in the self.dataset.
-        Since the variance is standard deviation^2, we can simply subtract the dimension mean and divide by dimension standard deviation in each data point in each dimension.
+        Return normalized version of inputset, normalized to each dimension in dimension_means 0 and variance 1 in the self.dataset.
+        Since the variance is standard deviation^2, we can simply subtract the dimension dimension_means and divide by dimension standard deviation in each data point in each dimension.
         This normalization asserts data is gaussian distributed.
 
         :param DataSet inputset:

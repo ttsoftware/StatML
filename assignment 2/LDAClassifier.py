@@ -7,7 +7,7 @@ from DataSet import DataSet
 class LDAClassifier(object):
 
     def __init__(self, dataset):
-        self.dataset = dataset
+        self.dataset = dataset.clone()
         self.classifiers = {}
 
         self.covariance = None
@@ -63,13 +63,15 @@ class LDAClassifier(object):
         return (1/self.class_counts[class_name]) * sum(class_set)
 
     def find_covariance(self):
-        z = np.empty([2, 2])
+        z = np.empty([self.dataset.dimensions, self.dataset.dimensions])
+
         for class_name, data_set in self.dataset.class_sets.iteritems():
+
             vectors = data_set.unpack_numpy_array()
             class_mean = self.class_mean(class_name)
 
             for i, vector in enumerate(vectors):
-                z = z + np.dot((vector - class_mean), (vector - class_mean).T)
+                z += np.dot((vector - class_mean), (vector - class_mean).T)
 
         return (1/(self.parameters_count - len(self.class_counts.keys()))) * z
 
@@ -78,7 +80,6 @@ class LDAClassifier(object):
         Build a dictionary of delta-functions (determinant functions) for each class
         """
         self.covariance = self.find_covariance()
-
         for class_name, params_count in self.class_counts.iteritems():
 
             posterier = self.class_posterier(class_name)
@@ -89,7 +90,7 @@ class LDAClassifier(object):
 
     def delta_function(self, posterier, mean, data_point):
         """
-        Delta function for determining a given class associated with {posterier} and {mean} for {data_point}
+        Delta function for determining a given class associated with {posterier} and {dimension_means} for {data_point}
         :param posterier:
         :param mean:
         :param data_point:

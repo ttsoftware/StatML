@@ -4,6 +4,7 @@ import Regression as Regression
 
 
 class MAPRegression(Regression.Regression):
+
     def __init__(self, alpha, beta, d_mat, t_vec):
         super(MAPRegression, self).__init__(d_mat, t_vec)
 

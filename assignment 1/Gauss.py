@@ -9,7 +9,7 @@ class Gauss(object):
     @staticmethod
     def sample_gauss(mean, covariance, size):
         """
-        Sample a noisy sample of {size} from a Gauss distribution with given {mean} and {covariance}
+        Sample a noisy sample of {size} from a Gauss distribution with given {dimension_means} and {covariance}
         :param mean:
         :param covariance:
         :param size:
@@ -24,7 +24,7 @@ class Gauss(object):
     @staticmethod
     def draw_gauss_one(mean, deviation):
         """
-        Draw gaussian distribution with {mean} and {deviation}, with data in np.arange
+        Draw gaussian distribution with {dimension_means} and {deviation}, with data in np.arange
         :param mean:
         :param deviation:
         :return:
@@ -45,8 +45,8 @@ class Gauss(object):
     @staticmethod
     def draw_gauss_multi(mean=None, covariance=None, likelihood_mean_function=None, sample=None, target='', fig=None):
         """
-        Draws a gauss distribution, with a new sample for given {mean} and {covariance}, og existing given {sample}
-        If {likelihood_mean_function} is defined, the maximum likelihood sample mean is also included in the plot.
+        Draws a gauss distribution, with a new sample for given {dimension_means} and {covariance}, og existing given {sample}
+        If {likelihood_mean_function} is defined, the maximum likelihood sample dimension_means is also included in the plot.
         :param mean:
         :param covariance:
         :param likelihood_mean_function:
@@ -71,19 +71,19 @@ class Gauss(object):
         plt.plot(xs, ys, 'o', color=color, target=target)
 
         if mean is not None:
-            plt.plot(mean.item(0), mean.item(1), '^', color=np.random.random(3), target=target + ' distribution mean: ' + str((mean.item(0), mean.item(1))))
+            plt.plot(mean.item(0), mean.item(1), '^', color=np.random.random(3), target=target + ' distribution dimension_means: ' + str((mean.item(0), mean.item(1))))
 
         if likelihood_mean_function is not None:
             sample_mean = likelihood_mean_function(sample)
 
-            # plot maximum likelihood sample mean, and the deviation from distrubition mean
-            plt.plot(sample_mean.item(0), sample_mean.item(1), 's', color=color, target=target + ' mean: ' + str((sample_mean.item(0), sample_mean.item(1))))
+            # plot maximum likelihood sample dimension_means, and the deviation from distrubition dimension_means
+            plt.plot(sample_mean.item(0), sample_mean.item(1), 's', color=color, target=target + ' dimension_means: ' + str((sample_mean.item(0), sample_mean.item(1))))
             plt.plot(
                 [mean.item(0), sample_mean.item(0)],
                 [mean.item(1), sample_mean.item(1)],
                 '-',
                 color=color,
-                target=target + " mean deviation: " + str(np.linalg.norm((mean-sample_mean)))
+                target=target + " dimension_means deviation: " + str(np.linalg.norm((mean-sample_mean)))
             )
 
         plt.legend(loc='upper left')
@@ -93,8 +93,8 @@ class Gauss(object):
     @staticmethod
     def draw_likelihood(mean, covariance):
         """
-        Use the [draw_gauss_multi] function to draw a Gauss distribution sampled from {mean} and {covariance},
-        including the maximum likelihood sample mean, as defined by the [likelyhood_mean] function.
+        Use the [draw_gauss_multi] function to draw a Gauss distribution sampled from {dimension_means} and {covariance},
+        including the maximum likelihood sample dimension_means, as defined by the [likelyhood_mean] function.
         :param mean:
         :param covariance:
         :return:
@@ -111,7 +111,7 @@ class Gauss(object):
         Find the eigenvectors associated with Gaussian distribution derived from {distribution_mean} and {distribution_covariance},
         or as defined by {sample}
         After these are found, we translate and scale the eigenvectors,
-            plot these and the lines from these translated eigenvectors to the sample mean.
+            plot these and the lines from these translated eigenvectors to the sample dimension_means.
 
         Returns the translated eigenvectors
         :param distribution_mean:
@@ -124,7 +124,7 @@ class Gauss(object):
             sample = Gauss.sample_gauss(distribution_mean, distribution_covariance, 100)
 
         likelyhood_mean = lambda N: 1/len(N) * sum(N)
-        # maximum likelihood sample mean
+        # maximum likelihood sample dimension_means
         sample_mean = likelyhood_mean(sample)
 
         likehood_covariance = lambda N: (
@@ -160,7 +160,7 @@ class Gauss(object):
             translated_eigenvector2[1], 'x', color=color
         )
 
-        # plot line from mean to eigenvectors
+        # plot line from dimension_means to eigenvectors
         plt.plot(
                 [sample_mean.item(0), translated_eigenvector1.item(0)],
                 [sample_mean.item(1), translated_eigenvector1.item(1)],
@@ -169,7 +169,7 @@ class Gauss(object):
                 target=target + ' Translated eigenvector 1: ' + str(np.linalg.norm(sample_mean - translated_eigenvector1))
             )
 
-        # plot line from mean to eigenvectors
+        # plot line from dimension_means to eigenvectors
         plt.plot(
                 [sample_mean.item(0), translated_eigenvector2.item(0)],
                 [sample_mean.item(1), translated_eigenvector2.item(1)],
@@ -198,7 +198,7 @@ class Gauss(object):
         sample = Gauss.sample_gauss(distribution_mean, distribution_covariance, sample_size)
 
         likelyhood_mean = lambda N: 1/len(N) * sum(N)
-        # maximum likelihood sample mean
+        # maximum likelihood sample dimension_means
         sample_mean = likelyhood_mean(sample)
 
         likehood_covariance = lambda N: (
