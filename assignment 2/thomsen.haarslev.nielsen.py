@@ -15,8 +15,8 @@ lda = LDAClassifier(training_dataset)
 training_classified = lda.classify_dataset(training_dataset)
 test_classified = lda.classify_dataset(test_dataset)
 
-training_accuracy = LDAClassifier.find_accuracy(training_dataset, training_classified)
-test_accuracy = LDAClassifier.find_accuracy(test_dataset, test_classified)
+training_accuracy = LDAClassifier.find_error(training_dataset, training_classified)
+test_accuracy = LDAClassifier.find_error(test_dataset, test_classified)
 
 print 'Standard training set accuracy: ' + str(training_accuracy)
 print 'Standard test set accuracy: ' + str(test_accuracy)
@@ -33,8 +33,8 @@ normalized_lda = LDAClassifier(normalized_training_dataset)
 normalized_training_classified = normalized_lda.classify_dataset(normalized_training_dataset)
 normalized_test_classified = normalized_lda.classify_dataset(normalized_test_dataset)
 
-normalized_training_accuracy = LDAClassifier.find_accuracy(training_dataset, normalized_training_classified)
-normalized_test_accuracy = LDAClassifier.find_accuracy(test_dataset, normalized_test_classified)
+normalized_training_accuracy = LDAClassifier.find_error(training_dataset, normalized_training_classified)
+normalized_test_accuracy = LDAClassifier.find_error(test_dataset, normalized_test_classified)
 
 print 'Normalized training set accuracy: ' + str(normalized_training_accuracy)
 print 'Normalized test set accuracy: ' + str(normalized_test_accuracy)
