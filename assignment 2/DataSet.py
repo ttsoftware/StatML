@@ -10,6 +10,7 @@ class DataSet(list):
         """
 
         self.class_sets = {}
+        self.dimensions = 0  # number of dimensions in each datapoint
 
         if len(args) > 0:
             for i, x in enumerate(args[0]):
@@ -23,8 +24,12 @@ class DataSet(list):
         Add datapoint to set of classes
         :param data_point:
         """
+        if self.dimensions is 0:
+            self.dimensions = len(data_point.params)
+
         if data_point.target not in self.class_sets.keys():
             self.class_sets[data_point.target] = DataSet()
+
         self.class_sets[data_point.target].__iadd__([data_point], True)
 
     def unpack_params(self):
@@ -33,7 +38,7 @@ class DataSet(list):
         """
         values = []
         for i, data_point in enumerate(self):
-            values += [data_point.params]
+            values += [data_point.params[:]]
 
         return values
 
@@ -65,4 +70,10 @@ class DataSet(list):
             for i, data_point in enumerate(other):
                 self.add_class_point(data_point)
 
+        if self.dimensions is 0:
+            self.dimensions = len(other[0].params)
+
         return super(DataSet, self).__iadd__(other)
+
+    def clone(self):
+        return DataSet(self[:])

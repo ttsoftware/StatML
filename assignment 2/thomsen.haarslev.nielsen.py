@@ -1,10 +1,8 @@
 from DataReader import DataReader
-from Gauss import Gauss
 from LDAClassifier import LDAClassifier
 from Normalizer import Normalizer
 from MLRegression import MLRegression
 from MAPRegression import MAPRegression
-import numpy as np
 import matplotlib.pyplot as plt
 import math
 
@@ -16,11 +14,11 @@ lda = LDAClassifier(training_dataset)
 training_classified = lda.classify_dataset(training_dataset)
 test_classified = lda.classify_dataset(test_dataset)
 
-training_accuracy = LDAClassifier.find_error(training_dataset, training_classified)
-test_accuracy = LDAClassifier.find_error(test_dataset, test_classified)
+training_error = LDAClassifier.find_error(training_dataset, training_classified)
+test_error = LDAClassifier.find_error(test_dataset, test_classified)
 
-print 'Standard training set accuracy: ' + str(training_accuracy)
-print 'Standard test set accuracy: ' + str(test_accuracy)
+print 'Standard training set error: ' + str(training_error)
+print 'Standard test set error: ' + str(test_error)
 
 ############################# Normalized ###############################
 
@@ -34,11 +32,11 @@ normalized_lda = LDAClassifier(normalized_training_dataset)
 normalized_training_classified = normalized_lda.classify_dataset(normalized_training_dataset)
 normalized_test_classified = normalized_lda.classify_dataset(normalized_test_dataset)
 
-normalized_training_accuracy = LDAClassifier.find_error(training_dataset, normalized_training_classified)
-normalized_test_accuracy = LDAClassifier.find_error(test_dataset, normalized_test_classified)
+normalized_training_error = LDAClassifier.find_error(training_dataset, normalized_training_classified)
+normalized_test_error = LDAClassifier.find_error(test_dataset, normalized_test_classified)
 
-print 'Normalized training set accuracy: ' + str(normalized_training_accuracy)
-print 'Normalized test set accuracy: ' + str(normalized_test_accuracy)
+print 'Normalized training set error: ' + str(normalized_training_error)
+print 'Normalized test set error: ' + str(normalized_test_error)
 
 ############################# Sunspot prediction ###############################
 

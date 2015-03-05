@@ -16,10 +16,10 @@ class Normalizer(object):
             flat_dimensions += [map(lambda x: x[i], self.values)]
 
         self.dimensions_means = []  # mean for each dimension
-        self.dimensions_std = []  # standard deviation for each dimension
+        self.dimensions_stds = []  # standard deviation for each dimension
         for dim, dim_values in enumerate(flat_dimensions):
             self.dimensions_means += [np.mean(dim_values)]
-            self.dimensions_std += [np.std(dim_values)]
+            self.dimensions_stds += [np.std(dim_values)]
 
     def normalize(self, normalize_function, inputset):
         """
@@ -33,9 +33,7 @@ class Normalizer(object):
 
             normalized_dataset += [DataPoint(
                 params=map(
-                    lambda (dimension, dimension_value):
-                        normalize_function(dimension, dimension_value)
-                    ,
+                    lambda (dim, val): normalize_function(dim, val),
                     enumerate(data_point.params[:])
                 ),
                 target=data_point.target
@@ -53,6 +51,6 @@ class Normalizer(object):
         :return DataSet:
         """
         return self.normalize(
-            lambda d, x: (x - self.dimensions_means[d]) / self.dimensions_std[d],
+            lambda d, x: (x - self.dimensions_means[d]) / self.dimensions_stds[d],
             inputset
         )
