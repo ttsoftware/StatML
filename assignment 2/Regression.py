@@ -28,6 +28,6 @@ class Regression(object):
 
         guess_sum = 0
         for i in range(N):
-            guess_sum += (self.t_vec[i] - self.predict(i))**2
+            guess_sum += (self.t_vec[i][0] - self.predict(i))**2
 
-        return np.sqrt((1/N) * guess_sum)[0]
+        return np.sqrt((1/N) * guess_sum)
