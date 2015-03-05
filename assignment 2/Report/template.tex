@@ -64,17 +64,26 @@ This changes the covariance matrix, and since we assume identical covariance mat
 
 We have the two possible hypotheses
 \begin{eqnarray}
-	h(0) &=& 0 \\
-	h(0) &=& 1
+	h_0(0) &=& 0 \\
+	h_1(0) &=& 1
 \end{eqnarray}
 
 We can then calculate Bayes optimal risk for these on our set $S$.
+\begin{eqnarray}
+	\mathcal{R}_S(h) &=& \frac{1}{l}\sum^l_{i=1} \mathbb{I}\{h(x_i) \neq y_i\}
+\end{eqnarray}
+
+which gives us the risks
 
 \begin{eqnarray}
-	\mathcal{R}_S(h) &=& \frac{1}{l}\sum^l_{i=1} \mathbb{I}(
+	\mathcal{R}_S(h_0) &=& 0.75 \\
+	\mathcal{R}_S(h_1) &=& 0.25
 \end{eqnarray}
 
 \item \textit{What is the Bayes optimal classifier?}
+
+Bayes optimal classifier is the classifier, that minimizes bayes optimal risk. Hence, \underline{$h_1$} is clearly the Bayes optimal classifier.
+
 \item \textit{What is the risk of the probabilistic classifier?}
 
 We did look at the slides you referred, but we still couldn't make anything out of it. We have a hard time figuring out how to construct the classification and find the hypothesis function and would like an explanation of this on thursday.
