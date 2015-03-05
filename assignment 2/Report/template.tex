@@ -102,21 +102,16 @@ the RMS for the three selections on the test data are as mentioned:
 \end{itemize}
 
 \begin{figure}[H]
-	\includegraphics[scale=0.5]{ml_selection_1.png}
-	\caption{Selection 1}
+	\includegraphics[scale=0.475]{ML_predictions.png}
+	\caption{Predictions of all three selections.}
 \end{figure}
+
+We see from our figure that selection 3 gives the best fit on the test set, while also having the lowest RMS of 17.9638970659.
 
 \begin{figure}[H]
-	\includegraphics[scale=0.5]{ml_selection_2.png}
-	\caption{Selection 2}
+	\includegraphics[scale=0.665]{ML_regression.png}
+	\caption{Prediction for selection 2, plotted for target against feature.}
 \end{figure}
-
-\begin{figure}[H]
-	\includegraphics[scale=0.5]{ml_selection_3.png}
-	\caption{Selection 3}
-\end{figure}
-
-We see from our figures that selection 3 gives the best fit on the test set, while also having the lowest RMS of 17.9638970659.
 
 \section{II.2.2}
 \begin{itemize}
@@ -146,16 +141,15 @@ results?}
 To minimize the error function, we differentiate it, set it equal to 0, and then isolate w.
 
 \begin{eqnarray}
-	\frac{\delta E_D}{\delta w^T} &=& \frac{1}{2}\sum^N_{n=1}(2r_n(t_n - w^T \phi (x_n))(-\phi (x_n))\\
-	0 &=& \frac{1}{2}\sum^N_{n=1}(2r_n(t_n - w^T \phi (x_n))(-\phi (x_n))\\
-	0 &=& \frac{1}{2}\sum^N_{n=1}(2r_nt_n - 2r_nw^T \phi (x_n))(-\phi (x_n))\\
-	0 &=& \frac{1}{2}\sum^N_{n=1}2r_nt_n\phi (x_n) + 2r_nw^T \phi (x_n)^2\\	
-	0 &=& \sum^N_{n=1}r_nt_n\phi (x_n) + r_nw^T \phi (x_n)^2\\
-	0 &=& \sum^N_{n=1}(r_nt_n\phi (x_n)) + \sum^N_{n=1}(r_nw^T \phi (x_n)^2)\\
-	0 &=& \sum^N_{n=1}(r_nt_n\phi (x_n)) + w^T\sum^N_{n=1}(r_n \phi (x_n)^2)\\
-	-\sum^N_{n=1}(r_nt_n\phi (x_n)) &=& w^T\sum^N_{n=1}(r_n \phi (x_n)^2)\\
-	\frac{-\sum^N_{n=1}(r_nt_n\phi (x_n))}{\sum^N_{n=1}(r_n \phi (x_n)^2)} &=& w^T\\
-	\left(\frac{-\sum^N_{n=1}(r_nt_n\phi (x_n))}{\sum^N_{n=1}(r_n \phi (x_n)^2)}\right)^T &=& w
+	\frac{\delta E_D}{\delta w} &=& \frac{1}{2}\sum^N_{n=1}(2r_n(t_n - w \phi (x_n))(-\phi^T (x_n))\\
+	0 &=& \frac{1}{2}\sum^N_{n=1}(2r_n(t_n - w \phi (x_n))(-\phi^T (x_n))\\
+	0 &=& \frac{1}{2}\sum^N_{n=1}(2r_nt_n - 2r_nw \phi (x_n))(-\phi^T (x_n))\\
+	0 &=& \frac{1}{2}\sum^N_{n=1}2r_nt_n\phi^T (x_n) + 2r_nw \phi (x_n) \phi^T (x_n)\\	
+	0 &=& \sum^N_{n=1}r_nt_n\phi^T (x_n) + r_nw \phi (x_n) \phi^T (x_n)\\
+	0 &=& \sum^N_{n=1}(r_nt_n\phi^T (x_n)) + \sum^N_{n=1}(r_nw \phi (x_n) \phi^T (x_n))\\
+	0 &=& \sum^N_{n=1}(r_nt_n\phi^T (x_n)) + w\sum^N_{n=1}(r_n \phi (x_n) \phi^T (x_n))\\
+	-\sum^N_{n=1}(r_nt_n\phi^T (x_n)) &=& w\sum^N_{n=1}(r_n \phi (x_n) \phi^T (x_n))\\
+	\frac{-\sum^N_{n=1}(r_nt_n\phi^T (x_n))}{\sum^N_{n=1}(r_n \phi (x_n) \phi^T (x_n))} &=& w
 \end{eqnarray}
 
 
