@@ -108,7 +108,7 @@ class LDAClassifier(object):
         )
 
     @staticmethod
-    def find_accuracy(unclassified_dataset, classified_dataset):
+    def find_error(unclassified_dataset, classified_dataset):
         """
         Find the accuracy of the classified dataset, which was classified based on classified_dataset
         :param DataSet dataset:
@@ -119,4 +119,4 @@ class LDAClassifier(object):
         for i, data_point in enumerate(unclassified_dataset):
             accuracy += [data_point.target == classified_dataset[i].target]
 
-        return accuracy.count(True) / len(accuracy)
+        return accuracy.count(False) / len(accuracy)
