@@ -7,6 +7,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
 \usepackage[margin=1 in]{geometry}
 \usepackage{color}
 \usepackage{caption}
@@ -59,6 +61,19 @@ This changes the covariance matrix, and since we assume identical covariance mat
 \section{II.1.3}
 \begin{itemize}
 \item \textit{What is its (Bayes optimal) risk?}
+
+We have the two possible hypotheses
+\begin{eqnarray}
+	h(0) &=& 0 \\
+	h(0) &=& 1
+\end{eqnarray}
+
+We can then calculate Bayes optimal risk for these on our set $S$.
+
+\begin{eqnarray}
+	\mathcal{R}_S(h) &=& \frac{1}{l}\sum^l_{i=1} \mathbb{I}(
+\end{eqnarray}
+
 \item \textit{What is the Bayes optimal classifier?}
 \item \textit{What is the risk of the probabilistic classifier?}
 
@@ -131,7 +146,7 @@ To minimize the error function, we differentiate it, set it equal to 0, and then
 	0 &=& \sum^N_{n=1}(r_nt_n\phi (x_n)) + w^T\sum^N_{n=1}(r_n \phi (x_n)^2)\\
 	-\sum^N_{n=1}(r_nt_n\phi (x_n)) &=& w^T\sum^N_{n=1}(r_n \phi (x_n)^2)\\
 	\frac{-\sum^N_{n=1}(r_nt_n\phi (x_n))}{\sum^N_{n=1}(r_n \phi (x_n)^2)} &=& w^T\\
-	\left(\frac{-\sum^N_{n=1}(r_nt_n\phi (x_n))}{\sum^N_{n=1}(r_n \phi (x_n)^2)}\right)^T &=& w\\
+	\left(\frac{-\sum^N_{n=1}(r_nt_n\phi (x_n))}{\sum^N_{n=1}(r_n \phi (x_n)^2)}\right)^T &=& w
 \end{eqnarray}
 
 
