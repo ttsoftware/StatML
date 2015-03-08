@@ -162,18 +162,28 @@ We see from our figure that selection 3 gives the best fit on the test set, whil
 \begin{itemize}
 \item \textit{Which of the three models seem to provide
 the best prediction?}
+
 	\begin{itemize}
 		\item Like with the ML solution, the 3rd selection using the highest number of years seems to fit the best. This is confirmed by the RMS values.
 	\end{itemize}
 \item \textit{How do the results compare with the maximum likelihood
 results?}
+
 	These are our RMS results for $\alpha = 0.5$
 	\begin{itemize}
 		\item \textbf{RMS for map selection1:} 29.9112229729
 		\item \textbf{RMS for map selection2:} 28.6058321345
 		\item \textbf{RMS for map selection3:} 17.9664239687
 	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{rms_values.png}
+		\caption{Predictions of all three selections.}
+	\end{figure}	
+	
 \item \textit{For what value of the prior precision parameter $\alpha$ does the RMS error go below the RMS for the maximum likelihood solution from Question II.2.1?}
+
 	\begin{itemize}
 		\item We could not find an $\alpha$ for which the RMS for MAP was lower than that found in our ML solution. As expected we came closer and closer to $RMS_{ML}$ when $\alpha$ approached 0, but as we increased $\alpha$, so did our $RMS_{MAP}$ and as such we could not improve on the results found with the ML solution.
 	\end{itemize}

@@ -4,7 +4,7 @@ from Normalizer import Normalizer
 from MLRegression import MLRegression
 from MAPRegression import MAPRegression
 import matplotlib.pyplot as plt
-import math
+import numpy as np
 
 training_dataset = DataReader.read_data('IrisTrain2014.dt')
 test_dataset = DataReader.read_data('IrisTest2014.dt')
@@ -135,18 +135,6 @@ for a in alphas:
 ml_RMS1 = ml_regression_test1.root_mean_square()
 ml_RMS2 = ml_regression_test2.root_mean_square()
 ml_RMS3 = ml_regression_test3.root_mean_square()
-
-for x in RMSs_test1:
-    if x < ml_RMS1:
-        print x
-
-for x in RMSs_test2:
-    if x < ml_RMS2:
-        print x
-
-for x in RMSs_test3:
-    if x < ml_RMS3:
-        print x
 
 fig = plt.figure("RMS values")
 ax1 = fig.add_subplot(311)
