@@ -45,8 +45,8 @@ We notice that the test accuracy is slightly better than the one found with K-NN
 
 \section{II.1.2}
 \begin{itemize}
-	\item Normalized training set accuracy: 0.4
-	\item Normalized test set accuracy: 0.315789473684
+	\item Normalized training set error: 0.4
+	\item Normalized test set error: 0.315789473684
 \end{itemize}
 
 We notice a worse result after normalization, which is not quite what we expected. We expected at least the same results, since we are normalizing with a linearly mapping.
@@ -123,7 +123,7 @@ P(h_{prob}(x)=1) = 0.75 $
 \begin{eqnarray*}
 \mathcal{R}(h_{prob}) &=& \sum_{y,z\in S_c} P(Y=y)P(h_{prob}=z)L(y,z)\\ 
 \end{eqnarray*}
-The first factor is the probability of $y$, one could take $x$ into consideration and make it a joined probability, but since $x$ is always $0$ in this case, we can exclude it.\\
+The first factor is the probability of $y$, one could take $x$ into consideration and make it a joined probability, but since $z$ is always $0$ in this case, we can exclude it.\\
 The next factor is the probabilistic classifier, given in the assignment notes and described above.\\
 The last factor is the Loss-function.\\\\
 And the risk computed with inserted values:
