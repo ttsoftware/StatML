@@ -10,7 +10,7 @@ class Regression(object):
         to find w.
 
         :param d_mat (Design matric):
-        :param t_vec (Target vector:
+        :param t_vec (Target vector):
         """
 
         self.d_mat = np.array(map(lambda x: [1] + x, d_mat))

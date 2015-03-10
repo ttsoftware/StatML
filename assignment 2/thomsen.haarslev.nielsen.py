@@ -118,7 +118,7 @@ map_guess_test1 = [map_regression_test1.predict(x) for x in range(96)]
 map_guess_test2 = [map_regression_test2.predict(x) for x in range(96)]
 map_guess_test3 = [map_regression_test3.predict(x) for x in range(96)]
 
-alphas = np.arange(0, 1, 0.001)
+alphas = np.arange(0, 500, 1)
 
 RMSs_test1 = []
 for a in alphas:
@@ -144,7 +144,7 @@ ax1.set_xlabel("Alpha values")
 ax1.set_ylabel("Root mean square")
 plt.plot(alphas, RMSs_test1, color='b', label="MAP RMS values (selection 1)")
 plt.plot(alphas, [ml_RMS1 for a in alphas], color='r', label="ML RMS (selection 1)")
-plt.legend(loc="upper left")
+plt.legend(loc="right")
 
 ax2 = fig.add_subplot(312)
 ax2.set_title('Selection 2')
@@ -152,7 +152,7 @@ ax2.set_xlabel("Alpha values")
 ax2.set_ylabel("Root mean square")
 plt.plot(alphas, RMSs_test2, color='b', label="MAP RMS values (selection 2)")
 plt.plot(alphas, [ml_RMS2 for a in alphas], color='r', label="ML RMS (selection 2)")
-plt.legend(loc="upper left")
+plt.legend(loc="right")
 
 ax3 = fig.add_subplot(313)
 ax3.set_title('Selection 3')
@@ -160,7 +160,7 @@ ax3.set_xlabel("Alpha values")
 ax3.set_ylabel("Root mean square")
 plt.plot(alphas, RMSs_test3, color='b', label="MAP RMS values (selection 3)")
 plt.plot(alphas, [ml_RMS3 for a in alphas], color='r', label="ML RMS (selection 3)")
-plt.legend(loc="upper left")
+plt.legend(loc="right")
 plt.show()
 
 """
