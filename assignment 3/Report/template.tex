@@ -1,0 +1,63 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage[table]{xcolor}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage[margin=1 in]{geometry}
+\usepackage{color}
+\usepackage{caption}
+\usepackage{pdflscape}
+\usepackage{fancyhdr}
+
+\title{Assignment 2: Foundations\\Statistical Methods for Machine Learning}
+\author{Troels Thomsen - qvw203\\Rasmus Haarslev - nkh877\\Allan Martin Nielsen - jcl187}
+
+\setlength\parindent{0pt}		% noindent through whole document
+\usepackage[parfill]{parskip}	% extra linebreak on new paragraph
+
+\begin{document}
+\pagestyle{empty}
+\maketitle
+\pagenumbering{gobble}
+\newpage
+
+\tableofcontents
+\newpage
+
+\pagenumbering{arabic}
+\pagestyle{fancy}
+\fancyhead[LO,LE]{qvw203 - nkh877 - jcl187}
+\fancyhead[RO, RE]{Assignment 2}
+
+\section{II.1.1}
+The derivative of the tansfer function can be found, by using the qoutient rule and noting that $\frac{d|a|}{da}=\frac{a}{|a|}|a\neq 0$:\\
+\begin{eqnarray}
+h(x) &=& \frac{g(x)}{f(x)} | f(x) \neq 0\\
+h'(x) &=& \frac{g'(x)f(x)-g(x)f('x)}{(f(x))^2} | f(x) \neq 0
+\end{eqnarray} 
+We can then find the derivative to the transfer function, by handling the numerator and denominator as functions and inserting them in (2), noting that we consider the case where $a>0$ and $a<0$:
+ \begin{eqnarray}
+g(a) &=& a\\
+f(a) &=& 1+|a|\\
+h'(a) &=& \frac{1\cdot (1+|a|)-a\frac{a}{|a|}}{(1+|a|)^2}\\
+h'(a) &=& \frac{1+|a|-\frac{a^2}{|a|}}{(1+|a|)^2}\\
+h'(a) &=& \frac{1+|a|-|a|}{(1+|a|)^2}\\
+h'(a) &=& \frac{1}{(1+|a|)^2}\\
+\end{eqnarray}
+The case where $a=0$, the function will yield 1, since (9) will have the form:\\
+\begin{equation}
+h'(0) = \frac{1}{(1+|0|)^2} = \frac{1}{(1)^2} = 1
+\end{equation}
+\section{II.1.2}
+\section{II.2.1}
+\section{II.2.2}
+\section{II.2.3}
+
+\end{document}
+
