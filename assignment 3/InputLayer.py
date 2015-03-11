@@ -7,4 +7,3 @@ class InputLayer(object):
 
         neurons = []
         for d in dataset.dimensions:
-            

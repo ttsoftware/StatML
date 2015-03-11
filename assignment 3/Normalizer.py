@@ -2,6 +2,7 @@ from __future__ import division
 import numpy as np
 from DataPoint import DataPoint
 from DataSet import DataSet
+import math
 
 
 class Normalizer(object):
@@ -11,13 +12,13 @@ class Normalizer(object):
         self.values = dataset.unpack_params()
 
         # We do this in the constructor in order to save time when we normalize input in the future
-        flat_dimensions = []
+        self.flat_dimensions = []
         for i in range(len(self.values[0])):
-            flat_dimensions += [map(lambda x: x[i], self.values)]
+            self.flat_dimensions += [map(lambda x: x[i], self.values)]
 
         self.dimensions_means = []  # mean for each dimension
         self.dimensions_stds = []  # standard deviation for each dimension
-        for dim, dim_values in enumerate(flat_dimensions):
+        for dim, dim_values in enumerate(self.flat_dimensions):
             self.dimensions_means += [np.mean(dim_values)]
             self.dimensions_stds += [np.std(dim_values)]
 
@@ -54,3 +55,11 @@ class Normalizer(object):
             lambda d, x: (x - self.dimensions_means[d]) / self.dimensions_stds[d],
             inputset
         )
+
+    def variance(self):
+        """
+        Return the variance of self.dataset
+
+        :return float list:
+        """
+        return map(lambda x: math.sqrt(x), self.dimensions_stds)
