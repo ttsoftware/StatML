@@ -49,7 +49,13 @@ class DataSet(list):
         values = []
         for i, data_point in enumerate(self):
             values += [data_point.get_vector()]
-        return values
+        return np.array(values)
+
+    def unpack_labels(self):
+        """
+        Get the targets for our dataset
+        """
+        return map(lambda x: x.target, self)
 
     def get_by_class(self, class_name):
         """

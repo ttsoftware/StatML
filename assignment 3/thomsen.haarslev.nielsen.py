@@ -1,6 +1,13 @@
 from DataReader import DataReader
 from Normalizer import Normalizer
+import numpy as np
+from sklearn import svm
+import math
 
+
+############## 2.1 ################
+
+# Normalization
 parkinson_training = DataReader.read_data("data/parkinsonsTrainStatML.dt")
 parkinson_test = DataReader.read_data("data/parkinsonsTestStatML.dt")
 
@@ -18,3 +25,6 @@ print test_normalizer.dimensions_means
 print test_normalizer.variance()
 
 print "\n", train_normalizer.variance()
+
+# SVM
+

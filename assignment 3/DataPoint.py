@@ -16,4 +16,4 @@ class DataPoint(object):
         self.params = map(lambda x: float(x), params)
 
     def get_vector(self):
-        return np.array(map(lambda x: [x], self.params[:]))
+        return np.array(map(lambda x: x, self.params[:]))

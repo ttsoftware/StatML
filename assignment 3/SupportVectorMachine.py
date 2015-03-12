@@ -3,7 +3,15 @@ import math
 
 class SupportVectorMachine(object):
 
+    def __init__(self, dataset, gamma=0.1, C=10, kernel='rbf'):
+        self.dataset = dataset
 
-    def GaussKernel(self, x, z, gamma):
-        delta = math.sqrt((1/(2*gamma)))
-        return math.exp(-delta * len(x-z)**2)
+    gamma = 0.1
+C = 10
+
+clf = svm.SVC(kernel='rbf', gamma=gamma, C=C)
+clf.fit(parkinson_training.unpack_params(), parkinson_training.unpack_labels())
+
+predictions = clf.predict(parkinson_test.unpack_params())
+
+print predictions == parkinson_test.unpack_labels()
