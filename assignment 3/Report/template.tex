@@ -15,7 +15,7 @@
 \usepackage{pdflscape}
 \usepackage{fancyhdr}
 
-\title{Assignment 2: Foundations\\Statistical Methods for Machine Learning}
+\title{Assignment 3: Foundations\\Statistical Methods for Machine Learning}
 \author{Troels Thomsen - qvw203\\Rasmus Haarslev - nkh877\\Allan Martin Nielsen - jcl187}
 
 \setlength\parindent{0pt}		% noindent through whole document
@@ -33,30 +33,123 @@
 \pagenumbering{arabic}
 \pagestyle{fancy}
 \fancyhead[LO,LE]{qvw203 - nkh877 - jcl187}
-\fancyhead[RO, RE]{Assignment 2}
+\fancyhead[RO, RE]{Assignment 3}
 
 \section{II.1.1}
 The derivative of the tansfer function can be found, by using the qoutient rule and noting that $\frac{d|a|}{da}=\frac{a}{|a|}|a\neq 0$:\\
 \begin{eqnarray}
-h(x) &=& \frac{g(x)}{f(x)} | f(x) \neq 0\\
-h'(x) &=& \frac{g'(x)f(x)-g(x)f('x)}{(f(x))^2} | f(x) \neq 0
-\end{eqnarray} 
-We can then find the derivative to the transfer function, by handling the numerator and denominator as functions and inserting them in (2), noting that we consider the case where $a>0$ and $a<0$:
- \begin{eqnarray}
-g(a) &=& a\\
-f(a) &=& 1+|a|\\
-h'(a) &=& \frac{1\cdot (1+|a|)-a\frac{a}{|a|}}{(1+|a|)^2}\\
-h'(a) &=& \frac{1+|a|-\frac{a^2}{|a|}}{(1+|a|)^2}\\
-h'(a) &=& \frac{1+|a|-|a|}{(1+|a|)^2}\\
-h'(a) &=& \frac{1}{(1+|a|)^2}\\
+	h(x) &=& \frac{g(x)}{f(x)} | f(x) \neq 0\\
+	h'(x) &=& \frac{g'(x)f(x)-g(x)f('x)}{(f(x))^2} | f(x) \neq 0
 \end{eqnarray}
-The case where $a=0$, the function will yield 1, since (9) will have the form:\\
+ 
+We can then find the derivative to the transfer function, by handling the numerator and denominator as functions and inserting them in (2), noting that we consider the case where $a>0$ and $a<0$:
+\begin{eqnarray}
+	g(a) &=& a\\
+	f(a) &=& 1+|a|\\
+	h'(a) &=& \frac{1\cdot (1+|a|)-a\frac{a}{|a|}}{(1+|a|)^2}\\
+	h'(a) &=& \frac{1+|a|-\frac{a^2}{|a|}}{(1+|a|)^2}\\
+	h'(a) &=& \frac{1+|a|-|a|}{(1+|a|)^2}\\
+	h'(a) &=& \frac{1}{(1+|a|)^2}\\
+\end{eqnarray}
+The case where $a=0$, the function will yield 1, since (9) will have the form:
+
 \begin{equation}
-h'(0) = \frac{1}{(1+|0|)^2} = \frac{1}{(1)^2} = 1
+	h'(0) = \frac{1}{(1+|0|)^2} = \frac{1}{(1)^2} = 1
 \end{equation}
+
 \section{II.1.2}
 \section{II.2.1}
+
+\[Training\ mean = \left(
+\begin{array}{c}
+155.96038775510206\\
+204.821193877551\\
+115.05862244897961\\
+0.0059978571428571424\\
+4.2887755102040829e-05\\
+0.0032041836734693872\\
+0.0033154081632653059\\
+0.0096129591836734696\\
+0.027739999999999997\\
+0.26240816326530614\\
+0.014676122448979591\\
+0.016614489795918366\\
+0.021988061224489795\\
+0.044028163265306119\\
+0.022639081632653057\\
+22.000704081632652\\
+0.49481960204081638\\
+0.71568976530612249\\
+-5.7637275306122442\\
+0.21479572448979595\\
+2.3657628673469384\\
+0.19970881632653059
+\end{array} 
+\right) \]
+
+\[Training\ variance = \left(
+\begin{array}{c}
+6.656095147075177\\
+9.907169276818067\\
+6.764287782442528\\
+0.06287905927130613\\
+0.0054852153402680905\\
+0.04862574481849449\\
+0.047705745079147835\\
+0.08421604431724898\\
+0.12609107329434685\\
+0.4033549429662795\\
+0.09301711006530504\\
+0.10062890858480358\\
+0.11529198649009464\\
+0.16110723217228484\\
+0.1725656260172071\\
+2.015742161196478\\
+0.31865601236010616\\
+0.23626419183059846\\
+1.0150922142264232\\
+0.27531432075896684\\
+0.6077867220135906\\
+0.28566070025500484
+\end{array} 
+\right) \]
+
+
+
+Normalized test mean:
+[-0.078579309878629822, -0.15804161512095821, 0.055623112213447443, 0.11318387059617592, 0.071573768538016072, 0.086914890627931535, 0.11567238855039749, 0.087015530078705133, 0.24898213522414622, 0.24518734019950522, 0.22956619607003162, 0.2508905077913246, 0.31660825718863211, 0.22960283397634887, 0.14905702097923168, -0.056763460231311701, 0.073567655778488658, 0.086766982724276354, 0.15477244610125082, 0.31069454970868138, 0.087416429507011437, 0.16857660314195763]
+
+Normalized test variance:
+[0.9250287228732689, 0.9195246016888662, 0.945028639553341, 1.1877778096537361, 1.1361125965666579, 1.209031894686311, 1.1774789752769503, 1.2091643546449475, 1.1537541194986605, 1.1629226629758114, 1.1447548293853007, 1.154710445495337, 1.2165286991929372, 1.1447780591529846, 1.277443113007099, 1.0800818556277136, 1.0200472935835834, 0.9875983134091282, 1.0502167122382409, 1.0804588903995263, 1.0318272630890424, 1.0906017110242643]
+
 \section{II.2.2}
+For this assignment, we chose to use the SKLearn-module for Python, which is a Python interface for the LIBSVM library, that can implement Support Vector Machines.
+
+For cross-validation we used the same procedure as in the NN-Classifier from assignment 1 and modified our implementation to fit this classifier.
+
+Initially the algorithm creates $S$ pairs of test and training sets .
+
+Then it iterates through each value of $\gamma$ and for each of these values it iterates over the values of $C$ and calculates the loss for each test/training pair, by giving the data-points from the test set, to the SVM-fitter, that is trained with the corresponding training set.
+
+If the loss is less than the previous best $\gamma/C$-pair, then this will be the new best $\gamma/C$-pair
+
+The program then returns this $\gamma/C$-pair, and the corresponding loss.
+
+The $\gamma$ and $C$, that we found for the raw, and normalized data is as follows:
+
+\textit{Raw data:}
+\begin{itemize}
+	\item $\gamma_{best} = 0.0001$
+	\item $C_{best} = 1$
+\end{itemize}
+
+\textit{Normalized data:}
+\begin{itemize}
+	\item $\gamma_{best} = 0.0001$
+	\item $C_{best} = 100$
+\end{itemize}
+
+
 \section{II.2.3}
 
 \end{document}

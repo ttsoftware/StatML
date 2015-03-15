@@ -51,7 +51,7 @@ class DataSet(list):
             values += [data_point.get_vector()]
         return np.array(values)
 
-    def unpack_labels(self):
+    def unpack_targets(self):
         """
         Get the targets for our dataset
         """
