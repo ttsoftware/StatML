@@ -16,8 +16,7 @@ class DataReader(object):
         with open(filename) as f:
             for line in f:
                 c = line.split(' ')
-                dataset += [DataPoint(
-                    c)]
+                dataset += [DataPoint(c)]
 
         # we sort by x-axis so we can more easily discover nearest neighbours
         #dataset.sort()

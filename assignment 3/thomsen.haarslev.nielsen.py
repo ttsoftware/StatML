@@ -1,9 +1,18 @@
 from DataReader import DataReader
+from NeuralNetwork import NeuralNetwork
 from Normalizer import Normalizer
 import numpy as np
 from sklearn import svm
 import math
 
+############### 1.1 ################
+
+training_dataset = DataReader.read_data('data/sincTrain25.dt')
+
+network = NeuralNetwork(1, 1, 1)
+network.skub(training_dataset)
+
+exit()
 
 ############## 2.1 ################
 

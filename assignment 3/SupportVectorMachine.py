@@ -10,8 +10,8 @@ class SupportVectorMachine(object):
 C = 10
 
 clf = svm.SVC(kernel='rbf', gamma=gamma, C=C)
-clf.fit(parkinson_training.unpack_params(), parkinson_training.unpack_labels())
+clf.fit(parkinson_training.unpack_params(), parkinson_training.unpack_targets())
 
 predictions = clf.predict(parkinson_test.unpack_params())
 
-print predictions == parkinson_test.unpack_labels()
+print predictions == parkinson_test.unpack_targets()

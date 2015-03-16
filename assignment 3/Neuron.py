@@ -3,16 +3,19 @@ import numpy as np
 
 class Neuron(object):
 
-    def __init__(self, xs):
+    def __init__(self, ws=None):
         # starting weights for this neuron
-        ws = np.random.normal(size=(len(xs), 1))
-        ws.append(1)
-        xs.append(1)
         self.ws = ws
-        self.xs = xs
+        if type(ws) == list:
+            self.ws = ws[:]
 
-    def a(self):
-        accum = 0
-        for j in range(len(self.xs)):
-            accum += self.ws[j] * self.xs[j]
-        return accum
+    def activation_function(self, xs):
+        if xs is None:
+            raise Exception('Not yet implemented')
+
+        if self.ws is None:
+            # +1 for bias
+            #xs = xs[:]
+            #xs += [1]
+            # weights from 0 to N.
+            self.ws = np.random.normal(size=(1, len(xs))).tolist()[0]
