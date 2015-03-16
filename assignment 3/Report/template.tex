@@ -35,14 +35,14 @@
 \fancyhead[LO,LE]{qvw203 - nkh877 - jcl187}
 \fancyhead[RO, RE]{Assignment 3}
 
-\section{II.1.1}
+\section*{II.1.1}
 The derivative of the tansfer function can be found, by using the qoutient rule and noting that $\frac{d|a|}{da}=\frac{a}{|a|}|a\neq 0$:\\
 \begin{eqnarray}
 	h(x) &=& \frac{g(x)}{f(x)} | f(x) \neq 0\\
 	h'(x) &=& \frac{g'(x)f(x)-g(x)f('x)}{(f(x))^2} | f(x) \neq 0
 \end{eqnarray}
  
-We can then find the derivative to the transfer function, by handling the numerator and denominator as functions and inserting them in (2), noting that we consider the case where $a>0$ and $a<0$:
+We can then find the derivative to the transfer function, by handling the numerator and denominator as functions and inserting them in (2):
 \begin{eqnarray}
 	g(a) &=& a\\
 	f(a) &=& 1+|a|\\
@@ -51,14 +51,18 @@ We can then find the derivative to the transfer function, by handling the numera
 	h'(a) &=& \frac{1+|a|-|a|}{(1+|a|)^2}\\
 	h'(a) &=& \frac{1}{(1+|a|)^2}\\
 \end{eqnarray}
-The case where $a=0$, the function will yield 1, since (9) will have the form:
+The step from (6) to (7) we use the property of $\frac{a^2}{|a|} = |a|\ ,\ a\neq 0$
+
+
+Note that (9) derivation only covers the cases where $a\neq 0$.  
+The case where $a=0$, the function will yield 1, since it will have the form:
 
 \begin{equation}
 	h'(0) = \frac{1}{(1+|0|)^2} = \frac{1}{(1)^2} = 1
 \end{equation}
 
-\section{II.1.2}
-\section{II.2.1}
+\section*{II.1.2}
+\section*{II.2.1}
 
 \[Training\ mean = \left(
 \begin{array}{c}
@@ -122,7 +126,7 @@ Normalized test mean:
 Normalized test variance:
 [0.9250287228732689, 0.9195246016888662, 0.945028639553341, 1.1877778096537361, 1.1361125965666579, 1.209031894686311, 1.1774789752769503, 1.2091643546449475, 1.1537541194986605, 1.1629226629758114, 1.1447548293853007, 1.154710445495337, 1.2165286991929372, 1.1447780591529846, 1.277443113007099, 1.0800818556277136, 1.0200472935835834, 0.9875983134091282, 1.0502167122382409, 1.0804588903995263, 1.0318272630890424, 1.0906017110242643]
 
-\section{II.2.2}
+\section*{II.2.2}
 For this assignment, we chose to use the SKLearn-module for Python, which is a Python interface for the LIBSVM library, that can implement Support Vector Machines.
 
 For cross-validation we used the same procedure as in the NN-Classifier from assignment 1 and modified our implementation to fit this classifier.
@@ -150,7 +154,7 @@ The $\gamma$ and $C$, that we found for the raw, and normalized data is as follo
 \end{itemize}
 
 
-\section{II.2.3}
+\section*{II.2.3}
 
 \end{document}
 
