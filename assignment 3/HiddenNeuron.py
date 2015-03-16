@@ -1,13 +1,23 @@
 from __future__ import division
+from Neuron import Neuron
 
 
-class HiddenNeuron(object):
+class HiddenNeuron(Neuron):
 
-    def __init__(self):
-        pass
+    def __init__(self, weights=None):
+        super(HiddenNeuron, self).__init__(weights)
 
-    def h(self, a):
-        return a / (1+abs(a))
+    def activation_function(self, xs):
+        super(HiddenNeuron, self).activation_function(xs)
+        a = 0
+        for j in range(len(xs)):
+            a += self.ws[j] * xs[j]
 
-    def h_(self, a):
-        return 1 / (1+abs(a))**2
+        return a / (1 + abs(a))
+
+    def activation_function_derivative(self, xs):
+        a = 0
+        for j in range(len(xs)):
+            a += self.ws[j] * xs[j]
+
+        return 1 / (1 + abs(a))**2

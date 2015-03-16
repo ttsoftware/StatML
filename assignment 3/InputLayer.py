@@ -1,9 +1,11 @@
+from InputNeuron import InputNeuron
+from NeuronLayer import NeuronLayer
 
 
-class InputLayer(object):
+class InputLayer(NeuronLayer):
 
-    def __init__(self, dataset):
-        self.dataset = dataset
+    def __init__(self, neuron_count):
+        super(InputLayer, self).__init__()
 
-        neurons = []
-        for d in dataset.dimensions:
+        for d in range(neuron_count):
+            self.neurons += [InputNeuron(d)]

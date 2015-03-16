@@ -1,8 +1,17 @@
 from __future__ import division
 from DataReader import DataReader
+from NeuralNetwork import NeuralNetwork
 from Normalizer import Normalizer
 from SupportVectorMachine import SupportVectorMachine
 
+############### 1.1 ################
+
+training_dataset = DataReader.read_data('data/sincTrain25.dt')
+
+network = NeuralNetwork(1, 1, 1)
+network.skub(training_dataset)
+
+exit()
 
 ############## 2.1 ################
 
