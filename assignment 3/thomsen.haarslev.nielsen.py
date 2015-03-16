@@ -49,9 +49,14 @@ print "Loss for raw test set:", SVM_best.loss(parkinson_test)
 print "Loss for normalized training set:", SVM_normalized_best.loss(parkinson_train_normalized)
 print "Loss for normalized test set:", SVM_normalized_best.loss(parkinson_test_normalized)
 
-bounded = 0
-for coef in SVM_best.clf.dual_coef_:
-    if abs(coef) is best_C:
-        bounded += 1
 
-print bounded
+bounded = 0
+free = 0
+for coef in SVM_best.clf.dual_coef_[0]:
+    if abs(coef) == best_C:
+        bounded += 1
+    else:
+        free += 1
+
+print "Bounded SV:", bounded
+print "Free SV:", free
