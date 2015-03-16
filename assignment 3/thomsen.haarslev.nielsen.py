@@ -6,12 +6,12 @@ from SupportVectorMachine import SupportVectorMachine
 
 ############### 1.1 ################
 
-training_dataset = DataReader.read_data('data/sincTrain25.dt')
+# training_dataset = DataReader.read_data('data/sincTrain25.dt')
 
-network = NeuralNetwork(1, 1, 1)
-network.skub(training_dataset)
+# network = NeuralNetwork(1, 1, 1)
+# network.skub(training_dataset)
 
-exit()
+# exit()
 
 ############## 2.1 ################
 
@@ -67,5 +67,16 @@ for coef in SVM_best.clf.dual_coef_[0]:
     else:
         free += 1
 
-print "Bounded SV:", bounded
-print "Free SV:", free
+print "Raw - Bounded SV:", bounded
+print "Raw - Free SV:", free
+
+bounded = 0
+free = 0
+for coef in SVM_normalized_best.clf.dual_coef_[0]:
+    if abs(coef) == best_C_normalized:
+        bounded += 1
+    else:
+        free += 1
+
+print "Normalized - Bounded SV:", bounded
+print "Normalized - Free SV:", free
