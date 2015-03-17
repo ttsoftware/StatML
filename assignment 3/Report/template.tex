@@ -115,12 +115,59 @@ The case where $a=0$, the function will yield 1, since (9) will have the form:
 \right) \]
 
 
+\[Normalized\ test\ mean = \left(
+\begin{array}{c}
+-0.078579309878629822\\
+-0.15804161512095821\\
+0.055623112213447443\\
+0.11318387059617592\\
+0.071573768538016072\\
+0.086914890627931535\\
+0.11567238855039749\\
+0.087015530078705133\\
+0.24898213522414622\\
+0.24518734019950522\\
+0.22956619607003162\\
+0.2508905077913246\\
+0.31660825718863211\\
+0.22960283397634887\\
+0.14905702097923168\\
+-0.056763460231311701\\
+0.073567655778488658\\
+0.086766982724276354\\
+0.15477244610125082\\
+0.31069454970868138\\
+0.087416429507011437\\
+0.16857660314195763
+\end{array}
+\right) \]
 
-Normalized test mean:
-[-0.078579309878629822, -0.15804161512095821, 0.055623112213447443, 0.11318387059617592, 0.071573768538016072, 0.086914890627931535, 0.11567238855039749, 0.087015530078705133, 0.24898213522414622, 0.24518734019950522, 0.22956619607003162, 0.2508905077913246, 0.31660825718863211, 0.22960283397634887, 0.14905702097923168, -0.056763460231311701, 0.073567655778488658, 0.086766982724276354, 0.15477244610125082, 0.31069454970868138, 0.087416429507011437, 0.16857660314195763]
-
-Normalized test variance:
-[0.9250287228732689, 0.9195246016888662, 0.945028639553341, 1.1877778096537361, 1.1361125965666579, 1.209031894686311, 1.1774789752769503, 1.2091643546449475, 1.1537541194986605, 1.1629226629758114, 1.1447548293853007, 1.154710445495337, 1.2165286991929372, 1.1447780591529846, 1.277443113007099, 1.0800818556277136, 1.0200472935835834, 0.9875983134091282, 1.0502167122382409, 1.0804588903995263, 1.0318272630890424, 1.0906017110242643]
+\[Normalized\ test\ variance = \left(
+\begin{array}{c}
+0.9250287228732689\\
+0.9195246016888662\\
+0.945028639553341\\
+1.1877778096537361\\
+1.1361125965666579\\
+1.209031894686311\\
+1.1774789752769503\\
+1.2091643546449475\\
+1.1537541194986605\\
+1.1629226629758114\\
+1.1447548293853007\\
+1.154710445495337\\
+1.2165286991929372\\
+1.1447780591529846\\
+1.277443113007099\\
+1.0800818556277136\\
+1.0200472935835834\\
+0.9875983134091282\\
+1.0502167122382409\\
+1.0804588903995263\\
+1.0318272630890424\\
+1.0906017110242643
+\end{array}
+\right) \]
 
 \section{II.2.2}
 For this assignment, we chose to use the SKLearn-module for Python, which is a Python interface for the LIBSVM library, that can implement Support Vector Machines.
@@ -145,12 +192,46 @@ The $\gamma$ and $C$, that we found for the raw, and normalized data is as follo
 
 \textit{Normalized data:}
 \begin{itemize}
-	\item $\gamma_{best} = 0.0001$
-	\item $C_{best} = 100$
+	\item $\gamma_{best} = 0.01$
+	\item $C_{best} = 1$
 \end{itemize}
 
+With these hyperparameters, we get the following losses:
+
+\textit{Raw data:}
+\begin{itemize}
+	\item Raw training set: 0.15306122449
+	\item Raw test set: 0.20618556701
+\end{itemize}
+
+\textit{Normalized data:}
+\begin{itemize}
+	\item Normalized training set: 0.122448979592
+	\item Normalized test set: 0.134020618557
+\end{itemize}
+
+As can be seen, we achieve a much lower loss after normalization.
 
 \section{II.2.3}
+
+\subsection{II.2.3.2}
+
+\textit{Raw data:}
+\begin{itemize}
+	\item Bounded Support Vectors = 32
+	\item Free Support Vectors = 15
+\end{itemize}
+
+\textit{Normalized data:}
+\begin{itemize}
+	\item Bounded Support Vectors = 44
+	\item Free Support Vectors = 6
+\end{itemize}
+
+The C parameter is a regularization variable, which indicates how much the SVM should avoid misclassifying the training examples. If C is large, the SVM will try to choose hyperplanes with a smaller margin, if that hyperplane does a better job at classifying. On the other hand, a small C will look for a hyperplane with a larger margin, even though it may misclassify more of the data points. Extremely small values of C will often lead to misclassification even if the training data is linearly separable.
+
+
+
 
 \end{document}
 
