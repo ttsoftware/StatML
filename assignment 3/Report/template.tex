@@ -35,14 +35,14 @@
 \fancyhead[LO,LE]{qvw203 - nkh877 - jcl187}
 \fancyhead[RO, RE]{Assignment 3}
 
-\section{II.1.1}
+\section*{II.1.1}
 The derivative of the tansfer function can be found, by using the qoutient rule and noting that $\frac{d|a|}{da}=\frac{a}{|a|}|a\neq 0$:\\
 \begin{eqnarray}
 	h(x) &=& \frac{g(x)}{f(x)} | f(x) \neq 0\\
 	h'(x) &=& \frac{g'(x)f(x)-g(x)f('x)}{(f(x))^2} | f(x) \neq 0
 \end{eqnarray}
  
-We can then find the derivative to the transfer function, by handling the numerator and denominator as functions and inserting them in (2), noting that we consider the case where $a>0$ and $a<0$:
+We can then find the derivative to the transfer function, by handling the numerator and denominator as functions and inserting them in (2):
 \begin{eqnarray}
 	g(a) &=& a\\
 	f(a) &=& 1+|a|\\
@@ -51,14 +51,22 @@ We can then find the derivative to the transfer function, by handling the numera
 	h'(a) &=& \frac{1+|a|-|a|}{(1+|a|)^2}\\
 	h'(a) &=& \frac{1}{(1+|a|)^2}\\
 \end{eqnarray}
-The case where $a=0$, the function will yield 1, since (9) will have the form:
+The step from (6) to (7) we use the property of $\frac{a^2}{|a|} = |a|\ ,\ a\neq 0$
+
+
+Note that (9) derivation only covers the cases where $a\neq 0$.  
+The case where $a=0$, the function will yield 1, since it will have the form:
 
 \begin{equation}
 	h'(0) = \frac{1}{(1+|0|)^2} = \frac{1}{(1)^2} = 1
 \end{equation}
 
-\section{II.1.2}
-\section{II.2.1}
+Our neural network does not work. At some certain starting weights we can correctly predict our target value.\\
+But for the most part, our randomized starting weights result in our prediction converging towards 1.
+
+We can not figure out why this happens.
+\section*{II.1.2}
+\section*{II.2.1}
 
 \[Training\ mean = \left(
 \begin{array}{c}
@@ -169,7 +177,7 @@ The case where $a=0$, the function will yield 1, since (9) will have the form:
 \end{array}
 \right) \]
 
-\section{II.2.2}
+\section*{II.2.2}
 For this assignment, we chose to use the SKLearn-module for Python, which is a Python interface for the LIBSVM library, that can implement Support Vector Machines.
 
 For cross-validation we used the same procedure as in the NN-Classifier from assignment 1 and modified our implementation to fit this classifier.
@@ -212,7 +220,7 @@ With these hyperparameters, we get the following losses:
 
 As can be seen, we achieve a much lower loss after normalization.
 
-\section{II.2.3}
+\section*{II.2.3}
 
 \subsection{II.2.3.1}
 
@@ -232,7 +240,9 @@ The C parameter is a regularization variable, which indicates how much the SVM s
 
 \subsection{II.2.3.2}
 
+When the amount of training examples increases the amount of support vectors will grow asymptotically linearly. This development is due to the added data will propagate towards, but never reach a still (percentage of training  examples), even though there is noise on the data.
 
+On large applications this will mean the linear growth diminishes with the amount of dimensions in the data. It will however always grow.
 
 \end{document}
 
