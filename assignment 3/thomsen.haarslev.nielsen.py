@@ -6,9 +6,9 @@ from SupportVectorMachine import SupportVectorMachine
 
 ############### 1.1 ################
 
-training_dataset = DataReader.read_data('data/sincTrain25.dt')
+training_dataset = DataReader.read_data('data/sincTrain25_small.dt')
 
-network = NeuralNetwork(1, 1, 1)
+network = NeuralNetwork(2, 2, 1)
 network.skub(training_dataset)
 
 exit()

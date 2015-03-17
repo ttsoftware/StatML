@@ -8,6 +8,7 @@ class OutputNeuron(Neuron):
 
     def activation_function(self, xs):
         super(OutputNeuron, self).activation_function(xs)
+
         a = 0
         for j in range(len(xs)):
             a += self.ws[j] * xs[j]
