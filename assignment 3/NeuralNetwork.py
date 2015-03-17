@@ -1,3 +1,4 @@
+import math
 from InputLayer import InputLayer
 from HiddenLayer import HiddenLayer
 from OutputLayer import OutputLayer
@@ -10,6 +11,8 @@ class NeuralNetwork(object):
                  hidden_neuron_count,
                  output_neuron_count):
 
+        self.epsilon = 0.00001
+
         self.input_layer = InputLayer(input_neuron_count)
         self.hidden_layer = HiddenLayer(hidden_neuron_count)
         self.output_layer = OutputLayer(output_neuron_count)
@@ -19,109 +22,158 @@ class NeuralNetwork(object):
         Push the given dataset through the network
         :param dataset:
         """
-        values = dataset.unpack_params()
         targets = dataset.unpack_targets()
+
+        final_results = {}
+
+        for i in range(0, 100):
+
+            error = {}
+
+            yss = {}
+            input_zss = {}
+            hidden_zss = {}
+
+            for j, data_point in enumerate(dataset):
+                if j not in error.keys():
+                    error[j] = 0
+                    yss[j] = []
+                    input_zss[j] = []
+                    hidden_zss[j] = []
+
+                ys, input_zs, hidden_zs = self.push_through(data_point.params)
+                delta_js, delta_ks = self.backpropagate(ys, [data_point.target], input_zs, hidden_zs)
+
+                yss[j] = ys
+                input_zss[j] = input_zs
+                hidden_zss[j] = hidden_zs
+
+                error_new = data_point.target - ys[0]
+
+                print data_point.target, ys[0], error_new
+
+                if abs(error[j]) - abs(error_new) < 0.1:
+                    final_results[j] = ys[0]
+                    continue
+
+                error[j] = error_new
+
+                if math.isnan(ys[0]):
+                    final_results[j] = ys[0]
+                    continue
+
+            # backpropagate
+            #for j, data_point in enumerate(dataset):
+                #delta_js, delta_ks = self.backpropagate(yss[j], [data_point.target], input_zss[j], hidden_zss[j])
+
+        print ""
+
+        print self.hidden_layer.get_weights()
+        print self.output_layer.get_weights()
+
+        print targets
+        print final_results.values()
+
+    def push_through(self, params):
 
         input_zs = {}
         hidden_zs = {}
 
         # for each data point
-        for j, params in enumerate(values):
-            if j not in input_zs.keys():
-                input_zs[j] = []
-
+        for i, param in enumerate(params):
             # for each input neuron, get z's
-            for k, output_neuron in enumerate(self.input_layer.neurons):
-                input_zs[j] += [output_neuron.activation_function(params[k])]
+            input_zs[i] = self.input_layer.neurons[i].activation_function(param)
 
-        print "Input z's"
-        print input_zs
+        #print "Input z's"
+        #print input_zs
 
-        # for each input z
-        for j, z in input_zs.iteritems():
-            if j not in hidden_zs.keys():
-                hidden_zs[j] = []
-
-            # for each hidden neuron, get next z's
-            for k, output_neuron in enumerate(self.hidden_layer.neurons):
-                hidden_zs[j] += [output_neuron.activation_function(z)]
+        # for each hidden neuron, get next z's
+        for j, hidden_neuron in enumerate(self.hidden_layer.neurons):
+            hidden_zs[j] = hidden_neuron.activation_function(input_zs.values() + self.hidden_layer.bias)
 
         hidden_weights = self.hidden_layer.get_weights()
 
-        print "\nHidden z's"
-        print hidden_zs
+        #print "\nHidden z's"
+        #print hidden_zs
 
-        print "\nHidden weights: "
-        print hidden_weights
+        #print "\nHidden weights: "
+        #print hidden_weights
 
         ys = {}
-        # for each hidden z
-        for j, z in hidden_zs.iteritems():
-            if j not in ys.keys():
-                ys[j] = []
 
-            for k, output_neuron in enumerate(self.output_layer.neurons):
-                ys[j] += [output_neuron.activation_function(z)]
+        # for each output neuron
+        for k, output_neuron in enumerate(self.output_layer.neurons):
+            ys[k] = output_neuron.activation_function(hidden_zs.values() + self.output_layer.bias)
 
         output_weights = self.output_layer.get_weights()
 
-        print "\nOutput weights: "
-        print output_weights
+        #print "\nOutput weights: "
+        #print output_weights
 
-        print "\nY's:"
-        print ys
+        #print "\nY's:"
+        #print ys
+
+        return ys, input_zs, hidden_zs
+
+    def backpropagate(self, ys, targets, input_zs, hidden_zs):
 
         E_errors, delta_ks = self.error(ys, targets)
 
-        print "\nE and Delta k:"
-        print E_errors
-        print delta_ks
+        #print "\nE and Delta k:"
+        #print E_errors
+        #print delta_ks
 
         delta_js = {}
 
-        # for each hidden z
+        # for each hidden neuron
         for j, hidden_neuron in enumerate(self.hidden_layer.neurons):
-            if j not in delta_js.keys():
-                delta_js[j] = []
 
+            delta_js[j] = 0
             zj = hidden_neuron.activation_function_derivative(hidden_zs[j])
 
             # for each output neuron
             for k, output_neuron in enumerate(self.output_layer.neurons):
+                delta_js[j] += output_neuron.ws[j] * delta_ks[k]
 
-                delta_js[j] += [zj * output_neuron.ws[j] * delta_ks[j][k]]
+            delta_js[j] *= zj
 
-        print "\nDelta j:"
-        print delta_js
+        #print "\nDelta j:"
+        #print delta_js
+
+        #print "\nDerive j & k:"
 
         derive_j = {}
         for j, hidden_neuron in enumerate(self.hidden_layer.neurons):
             if j not in derive_j.keys():
                 derive_j[j] = []
-            for i, z in enumerate(input_zs[j]):
-                for k, delta_j in delta_js.iteritems():
-                    derive_j[j] += [delta_j[j] * z]
+
+            for i, z in enumerate(input_zs.values() + self.hidden_layer.bias):
+                derive_j[j] += [delta_js[j] * z]
+
+        #print derive_j
 
         derive_k = {}
         for k, output_neuron in enumerate(self.output_layer.neurons):
             if k not in derive_k.keys():
                 derive_k[k] = []
-            for j, z in enumerate(hidden_zs[k]):
-                for i, delta_k in delta_ks.iteritems():
-                    derive_k[k] += [delta_k[k] * z]
 
-        print "\nDerive j & k:"
-        print derive_j
-        print derive_k
+            for j, z in enumerate(hidden_zs.values() + self.output_layer.bias):
+                derive_k[k] += [delta_ks[k] * z]
 
+        #print derive_k
+
+        # here we modify the weights directly
         for j, neuron in enumerate(self.hidden_layer.neurons):
 
-            print neuron.ws
+            for i, w in enumerate(neuron.ws):
+                neuron.ws[i] -= w*derive_j[j][i] + self.epsilon
+
+        for k, neuron in enumerate(self.output_layer.neurons):
 
             for i, w in enumerate(neuron.ws):
-                neuron.ws[i] += w*derive_j[j][i]
+                neuron.ws[i] -= w*derive_k[k][i] + self.epsilon
 
-            print neuron.ws
+        return delta_js, delta_ks
 
     def error(self, predictions, targets):
         """
@@ -133,16 +185,11 @@ class NeuralNetwork(object):
         delta_errors = {}
         E_errors = {}
 
-        for i, target in enumerate(targets):
-            if i not in E_errors.keys():
-                E_errors[i] = []
-                delta_errors[i] = []
+        for k, prediction in predictions.iteritems():
 
-            # try all preditions for given input
-            for j, prediction in enumerate(predictions[i]):
-                delta_errors[i] += [prediction - target]
-                E_errors[i] += [(prediction - target) ** 2]
+            delta_errors[k] = prediction - targets[k]
+            E_errors[k] = (prediction - targets[k]) ** 2
 
-            map(lambda x: x/2, E_errors)
+        #map(lambda x: x/2, E_errors)
 
         return E_errors, delta_errors

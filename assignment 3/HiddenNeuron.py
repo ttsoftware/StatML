@@ -15,9 +15,5 @@ class HiddenNeuron(Neuron):
 
         return a / (1 + abs(a))
 
-    def activation_function_derivative(self, xs):
-        a = 0
-        for j in range(len(xs)):
-            a += self.ws[j] * xs[j]
-
+    def activation_function_derivative(self, a):
         return 1 / (1 + abs(a))**2

@@ -1,3 +1,4 @@
+import random
 import numpy as np
 
 
@@ -14,8 +15,5 @@ class Neuron(object):
             raise Exception('Not yet implemented')
 
         if self.ws is None:
-            # +1 for bias
-            #xs = xs[:]
-            #xs += [1]
             # weights from 0 to N.
-            self.ws = np.random.normal(size=(1, len(xs))).tolist()[0]
+            self.ws = np.random.normal(-0.5, 0.5, size=(1, len(xs))).tolist()[0]

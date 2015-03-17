@@ -11,7 +11,7 @@ from SupportVectorMachine import SupportVectorMachine
 # network = NeuralNetwork(1, 1, 1)
 # network.skub(training_dataset)
 
-# exit()
+# exit() 
 
 ############## 2.1 ################
 
