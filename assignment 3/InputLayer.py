@@ -8,4 +8,4 @@ class InputLayer(NeuronLayer):
         super(InputLayer, self).__init__()
 
         for d in range(neuron_count):
-            self.neurons += [InputNeuron(d)]
+            self.neurons += [InputNeuron()]

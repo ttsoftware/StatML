@@ -4,6 +4,7 @@ class NeuronLayer(object):
 
     def __init__(self):
         self.neurons = []
+        self.bias = [1]
 
     def get_weights(self):
         """
