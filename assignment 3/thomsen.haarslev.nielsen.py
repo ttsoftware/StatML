@@ -6,12 +6,12 @@ from SupportVectorMachine import SupportVectorMachine
 
 ############### 1.1 ################
 
-training_dataset = DataReader.read_data('data/sincTrain25.dt')
+# training_dataset = DataReader.read_data('data/sincTrain25.dt')
 
-network = NeuralNetwork(1, 1, 1)
-network.skub(training_dataset)
+# network = NeuralNetwork(1, 1, 1)
+# network.skub(training_dataset)
 
-exit()
+# exit()
 
 ############## 2.1 ################
 
@@ -37,20 +37,24 @@ print "Normalized test variance:", test_normalizer.variance()
 SVM = SupportVectorMachine(parkinson_training)
 SVM_normalized = SupportVectorMachine(parkinson_train_normalized)
 
-appr_params = SVM.get_params()
+raw_appr_params = SVM.get_params()
+normed_appr_params = SVM_normalized.get_params()
 
-gammas = [appr_params['gamma'] * 10**x for x in range(-3, 4)]
-Cs = [appr_params['C'] * 10**x for x in range(-3, 4)]
+raw_gammas = [raw_appr_params['gamma'] * 10**x for x in range(-3, 4)]
+raw_Cs = [raw_appr_params['C'] * 10**x for x in range(-3, 4)]
+
+normed_gammas = [normed_appr_params['gamma'] * 10**x for x in range(-3, 4)]
+normed_Cs = [normed_appr_params['C'] * 10**x for x in range(-3, 4)]
 
 
-best_gamma, best_C, best_loss = SVM.cross_validator(gammas, Cs)
-best_gamma_normalized, best_C_normalized, best_loss_normalized = SVM_normalized.cross_validator(gammas, Cs)
+best_gamma, best_C, best_loss = SVM.cross_validator(raw_gammas, raw_Cs)
+best_gamma_normalized, best_C_normalized, best_loss_normalized = SVM_normalized.cross_validator(normed_gammas, normed_Cs)
 
-# print best_gamma, best_C, best_loss
-# print best_gamma_normalized, best_C_normalized, best_loss_normalized
+print best_gamma, best_C, best_loss
+print best_gamma_normalized, best_C_normalized, best_loss_normalized
 
 SVM_best = SupportVectorMachine(parkinson_training, gamma=best_gamma, C=best_C)
-SVM_normalized_best = SupportVectorMachine(parkinson_train_normalized, gamma=best_gamma, C=best_C)
+SVM_normalized_best = SupportVectorMachine(parkinson_train_normalized, gamma=best_gamma_normalized, C=best_C_normalized)
 
 print "Loss for raw training set:", SVM_best.loss(parkinson_training)
 print "Loss for raw test set:", SVM_best.loss(parkinson_test)
@@ -67,5 +71,16 @@ for coef in SVM_best.clf.dual_coef_[0]:
     else:
         free += 1
 
-print "Bounded SV:", bounded
-print "Free SV:", free
+print "Raw - Bounded SV:", bounded
+print "Raw - Free SV:", free
+
+bounded = 0
+free = 0
+for coef in SVM_normalized_best.clf.dual_coef_[0]:
+    if abs(coef) == best_C_normalized:
+        bounded += 1
+    else:
+        free += 1
+
+print "Normalized - Bounded SV:", bounded
+print "Normalized - Free SV:", free

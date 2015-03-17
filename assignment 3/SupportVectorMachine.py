@@ -44,9 +44,9 @@ class SupportVectorMachine(object):
         train_partitions = []
         train_targets = []
 
-        for i in xrange(s_fold):
-            start_current = i * s_partitions
-            end_current = (i + 1) * s_partitions
+        for k in xrange(s_fold):
+            start_current = k * s_partitions
+            end_current = (k + 1) * s_partitions
 
             test_partitions += [map(lambda x: x.get_vector(), self.dataset[start_current:end_current])]
             test_targets += [map(lambda x: x.target, self.dataset[start_current:end_current])]
@@ -54,8 +54,8 @@ class SupportVectorMachine(object):
             train_targets += [map(lambda x: x.target, (self.dataset[:start_current] + self.dataset[end_current:]))]
 
         best_set = (-1, -1, 2)
-        for i in range(len(gammas)):
-            for j in range(len(Cs)):
+        for j in range(len(Cs)):
+            for i in range(len(gammas)):
                 loss = []
 
                 for h in xrange(len(train_partitions)):
