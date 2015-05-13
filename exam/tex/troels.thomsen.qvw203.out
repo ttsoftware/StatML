@@ -1,0 +1,16 @@
+\BOOKMARK [1][-]{section.1}{Photometric Redshift Estimation}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Question 1 - Linear Regression}{section.1}% 2
+\BOOKMARK [3][-]{subsubsection.1.1.1}{ML results}{subsection.1.1}% 3
+\BOOKMARK [3][-]{subsubsection.1.1.2}{MAP results}{subsection.1.1}% 4
+\BOOKMARK [3][-]{subsubsection.1.1.3}{SVR linear kernel results}{subsection.1.1}% 5
+\BOOKMARK [2][-]{subsection.1.2}{Question 2 - Non-linear Regression}{section.1}% 6
+\BOOKMARK [3][-]{subsubsection.1.2.1}{SVR RBF kernel results}{subsection.1.2}% 7
+\BOOKMARK [3][-]{subsubsection.1.2.2}{SVR Polynomial kernel results}{subsection.1.2}% 8
+\BOOKMARK [2][-]{subsection.1.3}{Question 7 - Overfitting}{section.1}% 9
+\BOOKMARK [1][-]{section.2}{Cybercrime Detection}{}% 10
+\BOOKMARK [2][-]{subsection.2.1}{Question 3 - Binary Classification}{section.2}% 11
+\BOOKMARK [3][-]{subsubsection.2.1.1}{LDA results}{subsection.2.1}% 12
+\BOOKMARK [3][-]{subsubsection.2.1.2}{KNN results}{subsection.2.1}% 13
+\BOOKMARK [2][-]{subsection.2.2}{Question 4 - Principal Component Analysis}{section.2}% 14
+\BOOKMARK [2][-]{subsection.2.3}{Question 5 - Clustering}{section.2}% 15
+\BOOKMARK [2][-]{subsection.2.4}{Question 6 - Multi-Class classification}{section.2}% 16

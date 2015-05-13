@@ -7,6 +7,10 @@ from DataSet import DataSet
 class LDAClassifier(object):
 
     def __init__(self, dataset):
+        """
+        Initialize the Linear Discriminant Analysis classifier
+        :param dataset:
+        """
         self.dataset = dataset.clone()
         self.classifiers = {}
 
@@ -109,15 +113,49 @@ class LDAClassifier(object):
         )
 
     @staticmethod
-    def find_error(unclassified_dataset, classified_dataset):
+    def find_accuracy(real_dataset, classified_dataset):
         """
         Find the accuracy of the classified dataset, which was classified based on classified_dataset
+        :param DataSet dataset:
+        :return:
+        """
+        return 1 - LDAClassifier.find_error(real_dataset, classified_dataset)
+
+    @staticmethod
+    def find_error(real_dataset, classified_dataset):
+        """
+        Find the error precision of the classified dataset, which was classified based on classified_dataset
         :param DataSet dataset:
         :param k:
         :return:
         """
-        accuracy = []
-        for i, data_point in enumerate(unclassified_dataset):
-            accuracy += [data_point.target == classified_dataset[i].target]
+        error = []
+        for i, data_point in enumerate(real_dataset):
+            error += [data_point.target == classified_dataset[i].target]
 
-        return accuracy.count(False) / len(accuracy)
+        return error.count(False) / len(error)
+
+    @staticmethod
+    def find_sensispevity(real_dataset, classified_dataset):
+
+        bad_count = 0
+        good_count = 0
+
+        real_bad_count = 0
+        real_good_count = 0
+
+        for i, data_point in enumerate(real_dataset):
+            if classified_dataset[i].target == 0\
+                    and data_point.target == 0:
+                bad_count += 1
+
+            if classified_dataset[i].target == 1\
+                    and data_point.target == 1:
+                good_count += 1
+
+            if data_point.target == 0:
+                real_bad_count += 1
+            else:
+                real_good_count += 1
+
+        return (good_count / real_good_count), (bad_count / real_bad_count)
